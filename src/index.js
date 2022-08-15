@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
+import './styles/Home.scss';
+import './styles/Nav.scss';
 import './styles/SignUp.scss';
 import './styles/LogIn.scss';
 import './styles/Forms.scss';

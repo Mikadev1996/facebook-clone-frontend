@@ -13,7 +13,7 @@ const Footer = () => {
                     <li>Italiano</li>
                     <li>Lietuvių</li>
                     <li>Română</li>
-                    <li>中文(简体)</li>
+                    <li>中文</li>
                     <li>Português</li>
                     <li>Deutsch</li>
                 </ul>
@@ -21,6 +21,7 @@ const Footer = () => {
                     <a href='/sign-up'><li>Sign Up</li></a>
                     <a href='/'><li>Log In</li></a>
                     <a href='https://github.com/Mikadev1996'><li>Mika's GitHub</li></a>
+                    <a href='/home'><li>Home</li></a>
                 </ul>
                 <ul>
                     <li>Mika © 2022</li>
