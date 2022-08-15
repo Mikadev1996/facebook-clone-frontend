@@ -3,6 +3,31 @@ nav {
   height: 56px;
   background-color: var(--post-nav-background-color);
   display: flex;
-  justify-content: space-evenly;
+  position: relative;
+  justify-content: center;
   align-items: center;
+}
+
+.nav-logo {
+  width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo a img {
+  margin-top: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+nav div:last-child {
+  position: absolute;
+  right: 0;
+}
+
+nav div:first-child {
+  position: absolute;
+  left: 20px;
 }

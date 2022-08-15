@@ -33,12 +33,16 @@ const Nav = () => {
 
     return (
         <nav>
-            <div>Logo</div>
+            <div className='nav-logo'>
+                <a href='https://github.com/Mikadev1996'>
+                    <img src="https://i.imgur.com/qanvhn7.png" alt=""/>
+                </a>
+            </div>
             <div>
                 <p>Home Icon</p>
                 <p>Friends Page</p>
             </div>
-            <div>
+            <div className='centre-nav'>
                 Profile Pic/Nav settings
                 <button id='theme-toggle'>Toggle theme</button>
             </div>

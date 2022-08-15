@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import Footer from "../Footer";
-import Nav from "../Nav";
-import HomeContent from "../HomeContent";
+import Footer from "../../Footer";
+import Nav from "../../Nav";
+import HomeContent from "./HomeContent";
 
 const Home = () => {
     return (
