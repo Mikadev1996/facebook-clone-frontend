@@ -1,3 +1,37 @@
-body {
 
+.login-content {
+  min-height: calc(100vh - 200px);
+  width: 100vw;
+  background-color: #F0F2F5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-container h1 {
+  color: #21d939;
+  margin: 0;
+  font-size: 48px;
+  font-family: Tahoma, "Segoe UI", sans-serif;
+}
+
+.title-container p {
+  font-size: 24px;
+  max-width: 500px;
+}
+
+.create-new-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.create-new-container button {
+  width: 60%;
 }

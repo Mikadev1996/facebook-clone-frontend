@@ -1,0 +1,117 @@
+// Finding Overscroll culprit!!
+
+//* {
+//  outline: 1px solid #f00 !important;
+//}
+
+//
+
+#form-container {
+  background-color: #FFFFFF;
+  overflow: hidden;
+  width: 400px;
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+.account-form {
+  padding: 20px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.form-control label {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #8A8D91;
+}
+
+.form-control input {
+  border: 2px solid whitesmoke;
+  border-radius: 4px;
+  display: block;
+  font-family: inherit;
+  width: 93%;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control.success input {
+  border-color: forestgreen;
+}
+
+.form-control.error input {
+  border-color: darkred;
+}
+
+.form-control.success i.fa-check-circle {
+  color: forestgreen;
+  visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+  color: darkred;
+  visibility: visible;
+}
+
+.form-control i {
+  visibility: hidden;
+  position: absolute;
+  top: 36px;
+  right: 10px;
+}
+
+.form-control small {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.form-control.error small {
+  color: darkred;
+  visibility: visible;
+}
+
+
+.form-submit {
+  margin: 10px 0;
+  padding: 10px;
+  width: 100%;
+  display: block;
+  border: 2px solid #21d939;
+  border-radius: 4px;
+  background: #21d939;
+  color: white;
+}
+
+.form-submit:hover {
+  filter: brightness(85%);
+}
+
+#facebook-login {
+  background-color: #1a73e8;
+  border-color: #1a73e8;
+}
+
+#test-account-login {
+  background-color: #e8c407;
+  border-color: #e8c407;
+}
+
+.hr-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-hr {
+  width: 75%;
+  border-color: rgba(188, 188, 189, 0.2);
+}
