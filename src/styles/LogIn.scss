@@ -1,5 +1,5 @@
 
-.login-content {
+.account-content {
   min-height: calc(100vh - 200px);
   width: 100vw;
   background-color: #F0F2F5;
@@ -29,9 +29,14 @@
 .create-new-container {
   display: flex;
   justify-content: center;
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
 }
 
-
-.create-new-container button {
-  width: 60%;
+.create-new-container a {
+  margin: 0;
+  width: 200px;
+  padding: 10px;
 }
+

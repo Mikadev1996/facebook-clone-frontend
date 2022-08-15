@@ -6,7 +6,7 @@ const Footer = () => {
         <footer>
             <div className='footer-container'>
                 <ul className='language-list'>
-                    <li> English (UK) </li>
+                    <li id='selected-lang'>English (UK)</li>
                     <li>Polski</li>
                     <li>Español</li>
                     <li>Français</li>

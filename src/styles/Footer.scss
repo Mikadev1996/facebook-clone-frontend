@@ -12,6 +12,12 @@ footer {
   font-size: 12px;
 }
 
+.form-header {
+  padding: 10px;
+  background: var(--background-accent-color);
+  border-bottom: 1px solid darkgrey;
+}
+
 .footer-container ul {
   display: flex;
   padding: 10px 0;
@@ -28,4 +34,8 @@ footer {
 .language-list {
   border-bottom: 1px solid #bcbcbd;
   padding: 10px 0;
+}
+
+#selected-lang {
+  color: #2f2f31;
 }

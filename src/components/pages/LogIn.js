@@ -1,4 +1,3 @@
-import '../../styles/LogIn.scss';
 import React, {useState} from "react";
 import Footer from "../Footer";
 
@@ -8,7 +7,7 @@ const LogIn = () => {
 
     return (
         <div className='app'>
-            <div className="login-content">
+            <div className="account-content">
                 <div className='title-container'>
                     <h1>Mika's facebook</h1>
                     <p>Facebook helps you connect and share with the people who saw this Git Repo.</p>
@@ -39,7 +38,7 @@ const LogIn = () => {
                     </form>
                     <div className='hr-container'><hr className='form-hr'/></div>
                     <div className='create-new-container'>
-                        <button className='form-submit'>Create New Account</button>
+                        <a href='/sign-up' className='form-submit'><div>Create New Account</div></a>
                     </div>
                 </div>
             </div>
