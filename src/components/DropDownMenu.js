@@ -68,7 +68,7 @@ function DropdownMenu() {
                 unmountOnExit
                 onEnter={calcHeight}>
                 <div className="menu">
-                    <a href="#" className="menu-item-profile" >
+                    <a href="/profile" className="menu-item-profile" >
                         <div className='profile-container'>
                             <div>
                                 <span className="icon-button">😎</span>
