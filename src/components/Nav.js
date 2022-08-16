@@ -1,39 +1,19 @@
 import React, { useState, useEffect } from "react";
+import NavItem from "./NavItem";
+import DropdownMenu from "./DropDownMenu";
 
 const Nav = () => {
-    const [darkMode, setDarkMode] = useState(false);
 
     useEffect(() => {
-        handleDarkModeToggle();
-    }, []);
-
-    const handleDarkModeToggle = () => {
-        let toggle = document.getElementById("theme-toggle");
-
         let storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
         if (storedTheme) {
             document.documentElement.setAttribute('data-theme', storedTheme)
         }
-
-        localStorage.getItem('theme') === 'light' ? setDarkMode(false) : setDarkMode(true);
-
-        toggle.onclick = () => {
-            setDarkMode(darkMode => !darkMode);
-            let currentTheme = document.documentElement.getAttribute("data-theme");
-            let targetTheme = "light";
-
-            if (currentTheme === "light") {
-                targetTheme = "dark";
-            }
-
-            document.documentElement.setAttribute('data-theme', targetTheme)
-            localStorage.setItem('theme', targetTheme);
-        };
-    }
+    }, []);
 
     return (
         <nav>
-            <div className='nav-logo'>
+            <div className='nav-logo github-logo'>
                 <a href='https://github.com/Mikadev1996'>
                     <img src="https://i.imgur.com/qanvhn7.png" alt="github"/>
                 </a>
@@ -44,8 +24,9 @@ const Nav = () => {
                 </a>
             </div>
             <div className='centre-nav'>
-                Profile Pic/Nav settings
-                <button id='theme-toggle'>Toggle theme</button>
+                <NavItem icon="😍">
+                    <DropdownMenu/>
+                </NavItem>
             </div>
         </nav>
     )
