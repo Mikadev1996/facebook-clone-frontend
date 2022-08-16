@@ -3,6 +3,7 @@ import { CSSTransition } from "react-transition-group";
 import { ReactComponent as ArrowIcon } from '../styles/icons/arrow.svg';
 import { ReactComponent as CogIcon } from '../styles/icons/cog.svg';
 import { ReactComponent as ChevronIcon } from '../styles/icons/chevron.svg';
+import { ReactComponent as LogOutIcon } from '../styles/icons/logout_icon.svg';
 
 function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
@@ -73,6 +74,9 @@ function DropdownMenu() {
                         rightIcon={<ChevronIcon />}
                         goToMenu="settings">
                         Settings
+                    </DropdownItem>
+                    <DropdownItem leftIcon={<LogOutIcon />}>
+                        Log Out
                     </DropdownItem>
                 </div>
             </CSSTransition>
