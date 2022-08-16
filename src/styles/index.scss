@@ -12,7 +12,7 @@
   --bg:  #242526;
   --bg-accent: #484a4d;
   --nav-size: 60px;
-  --border: 1px solid var(--post-nav-background-color);
+  --border: 1px solid var(--bac);
   --border-radius: 8px;
   --speed: 500ms;
 }
@@ -22,6 +22,7 @@ html {
 }
 
 html[data-theme='light'] {
+  --bac: #a6a5a5;
   --icon-bg-color: #bfc0c4;
   --hover-bg-color: #d7d5d5;
   --background-color: #F0F2F5;
@@ -32,6 +33,7 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
+  --bac: #323233;
   --icon-bg-color: #484a4d;
   --hover-bg-color: #525357;
   --background-color: #18191a;

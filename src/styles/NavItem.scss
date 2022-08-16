@@ -56,6 +56,39 @@
   width: 100%;
 }
 
+.menu-item-profile {
+  height: 85px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+}
+
+.profile-container {
+  width: calc(100% - 20px);
+  margin-right: 10px;
+  height: 85px;
+  box-shadow:  0 2px 12px rgba(0, 0, 0, 0.2);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  position: absolute;
+}
+
+.profile-container div {
+  display: flex;
+  align-items: center;
+  width: 85%;
+  height: 80%;
+  position: relative;
+  left: 20px;
+  border-bottom: 1px solid var(--bac);
+}
+
+.profile-container div p {
+  margin: 5px;
+}
+
 .menu-item {
   height: 50px;
   display: flex;

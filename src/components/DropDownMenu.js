@@ -68,7 +68,14 @@ function DropdownMenu() {
                 unmountOnExit
                 onEnter={calcHeight}>
                 <div className="menu">
-                    <DropdownItem>My Profile</DropdownItem>
+                    <a href="#" className="menu-item-profile" >
+                        <div className='profile-container'>
+                            <div>
+                                <span className="icon-button">😎</span>
+                                <p>Charmika Devendra</p>
+                            </div>
+                        </div>
+                    </a>
                     <DropdownItem
                         leftIcon={<CogIcon />}
                         rightIcon={<ChevronIcon />}
