@@ -6,6 +6,11 @@
   margin-top: 25px;
   margin-left: 10px;
   border-bottom: 1px solid var(--bac);
+  display: none;
+
+  @media only screen and (min-width: 600px) {
+    display: block;
+  }
 }
 
 .content-nav-item {
