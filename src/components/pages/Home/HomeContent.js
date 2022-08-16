@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import HomeLeftNav from "./HomeLeftNav";
+import HomeContacts from "./HomeContacts";
 
 const HomeContent = () => {
     return (
@@ -8,6 +9,7 @@ const HomeContent = () => {
             <div className="posts-container">
 
             </div>
+            <HomeContacts />
         </main>
     )
 }

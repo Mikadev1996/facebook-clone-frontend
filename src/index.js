@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
 import './styles/Home.scss';
 import './styles/HomeContent.scss';
+import './styles/HomeContacts.scss';
 import './styles/HomeLeftNav.scss';
 import './styles/Nav.scss';
 import './styles/NavItem.scss';
