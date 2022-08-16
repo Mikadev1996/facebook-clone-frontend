@@ -16,6 +16,21 @@ nav {
   justify-content: center;
 }
 
+.home-logo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 3px solid #21d939;
+  width: 75px;
+}
+
+.home-logo img {
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+}
+
 .nav-logo a img {
   margin-top: 5px;
   width: 40px;

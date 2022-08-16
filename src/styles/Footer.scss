@@ -1,7 +1,7 @@
 footer {
   width: 100vw;
   height: 200px;
-  background-color: var(--input-background-color);
+  background-color: var(--post-nav-background-color);
   color: var(--text-hidden-color);
   padding: 0;
   margin: 0;
@@ -37,5 +37,5 @@ footer {
 }
 
 #selected-lang {
-  color: var(--text-hidden-color);
+  color: #65676B;
 }

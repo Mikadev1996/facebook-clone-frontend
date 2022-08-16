@@ -35,12 +35,13 @@ const Nav = () => {
         <nav>
             <div className='nav-logo'>
                 <a href='https://github.com/Mikadev1996'>
-                    <img src="https://i.imgur.com/qanvhn7.png" alt=""/>
+                    <img src="https://i.imgur.com/qanvhn7.png" alt="github"/>
                 </a>
             </div>
-            <div>
-                <p>Home Icon</p>
-                <p>Friends Page</p>
+            <div className='home-logo'>
+                <a href="/home">
+                    <img src="https://i.imgur.com/1j2oqFr.png" alt='home' />
+                </a>
             </div>
             <div className='centre-nav'>
                 Profile Pic/Nav settings
