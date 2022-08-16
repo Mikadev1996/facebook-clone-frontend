@@ -5,7 +5,7 @@ function NavItem(props) {
 
     useEffect(() => {
         window.addEventListener("click", (e) => {
-            if (e.target.classList.contains('content')) {
+            if (e.target.classList.contains('content create-bar posts-container')) {
                 setOpen(false);
             }
         })

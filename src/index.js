@@ -6,6 +6,7 @@ import './styles/HomeContent.scss';
 import './styles/HomeContacts.scss';
 import './styles/HomeLeftNav.scss';
 import './styles/Nav.scss';
+import './styles/Post.scss';
 import './styles/NavItem.scss';
 import './styles/SignUp.scss';
 import './styles/LogIn.scss';

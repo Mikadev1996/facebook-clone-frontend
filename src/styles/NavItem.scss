@@ -48,7 +48,7 @@
   position: absolute;
   top: 46px;
   width: 300px;
-  transform: translateX(-5%);
+  transform: translateX(-2%);
   background-color: var(--post-nav-background-color);
   border: var(--border);
   border-radius: var(--border-radius);
@@ -83,6 +83,7 @@
 }
 
 .profile-container div {
+  border-radius: var(--border-radius);
   display: flex;
   align-items: center;
   width: 85%;
@@ -90,6 +91,11 @@
   position: relative;
   left: 20px;
   border-bottom: 1px solid var(--bac);
+}
+
+.profile-container div:hover {
+  transition: all var(--speed) ease;
+  background-color: var(--hover-bg-color);
 }
 
 .profile-container div p {

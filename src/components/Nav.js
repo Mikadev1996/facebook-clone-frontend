@@ -24,7 +24,7 @@ const Nav = () => {
                         <img src="https://i.imgur.com/1j2oqFr.png" alt='home' />
                     </a>
                 </div>
-                <div className='centre-nav'>
+                <div className='nav-last'>
                     <NavItem icon="😍">
                         <DropdownMenu/>
                     </NavItem>
