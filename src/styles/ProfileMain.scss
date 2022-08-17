@@ -1,0 +1,30 @@
+.profile-main {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  height: 100%;
+}
+
+.main-box {
+  width: 62rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-intro-container {
+  margin-top: 50px;
+  width: 300px;
+  min-height: 200px;
+  background-color: var(--post-nav-background-color);
+  border-radius: var(--border-radius);
+
+  h1 {
+    font-size: 22px;
+  }
+}
+
+.profile-posts-container {
+  width: 600px;
+}

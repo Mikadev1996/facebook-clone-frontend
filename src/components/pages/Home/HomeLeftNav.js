@@ -5,7 +5,7 @@ const HomeLeftNav = () => {
     return (
         <div className='content-nav'>
             <div className="content-nav-item">
-                <a href='/profile'><span className='icon-button'>😎</span></a>
+                <a href='/profile/123'><span className='icon-button'>😎</span></a>
                 <p>Charmika Devendra</p>
             </div>
             <div className="content-nav-item">

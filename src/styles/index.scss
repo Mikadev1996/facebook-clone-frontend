@@ -67,6 +67,16 @@ code {
     monospace;
 }
 
+button {
+  border: none;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: var(--hover-bg-color);
+}
+
 ul {
   list-style: none;
   padding: 0;

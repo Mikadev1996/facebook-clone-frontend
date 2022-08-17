@@ -13,6 +13,7 @@ import './styles/SignUp.scss';
 import './styles/LogIn.scss';
 import './styles/Forms.scss';
 import './styles/ProfileHeader.scss';
+import './styles/ProfileMain.scss';
 import RouteSwitch from "./RouteSwitch";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
