@@ -4,14 +4,14 @@ import FriendsIcon from '../../../styles/icons/friends_icon.png';
 const HomeLeftNav = () => {
     return (
         <div className='content-nav'>
-            <div className="content-nav-item">
-                <a href='/profile/123'><span className='icon-button'>😎</span></a>
+            <a href='/profile/123' className="content-nav-item">
+                <span className='icon-button'>😎</span>
                 <p>Charmika Devendra</p>
-            </div>
-            <div className="content-nav-item">
-                <a href='/friends' className='icon-button'><img src={FriendsIcon} alt="friends"/></a>
+            </a>
+            <a href='/friends' className="content-nav-item">
+                <span className='icon-button'><img src={FriendsIcon} alt="friends"/></span>
                 <p>Friends</p>
-            </div>
+            </a>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import './styles/Home/Home.scss';
 import './styles/Home/HomeContent.scss';
 import './styles/Home/HomeContacts.scss';
 import './styles/Home/HomeLeftNav.scss';
-import './styles/Home/HomeLeftNav.scss';
+import './styles/Home/HomeCreatePost.scss';
 import './styles/Nav.scss';
 import './styles/Post.scss';
 import './styles/NavItem.scss';
