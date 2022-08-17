@@ -23,7 +23,7 @@ const Post = () => {
                 <div className="post-footer">
                     <div className='post-info'>
                         <div><span className='fb-like'><LikeIcon/></span><p>17</p></div>
-                        <p>X comments</p>
+                        <p>0 comments</p>
                     </div>
                     <div className='post-like-container'>
                         <p>Like</p>
