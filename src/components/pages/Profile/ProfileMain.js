@@ -2,6 +2,7 @@ import React from "react";
 import Post from "../../Post";
 
 const ProfileMain = () => {
+
     return (
         <div className='profile-main'>
             <div className='main-box'>

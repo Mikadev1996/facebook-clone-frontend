@@ -47,13 +47,20 @@
 
   div p {
     padding: 10px;
+    text-align: center;
     border-radius: var(--border-radius);
     user-select: none;
+    margin: 0 10px;
+    width: 100px;
   }
 
   div p:hover {
     background-color: var(--hover-bg-color);
     transition: all ease 300ms;
   }
+}
+
+.profile-nav-selection {
+
 }
 
