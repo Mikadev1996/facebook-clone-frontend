@@ -7,6 +7,7 @@ nav {
   top: 0;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 
 .nav-container {
@@ -52,6 +53,7 @@ nav {
 nav div:last-child {
   position: absolute;
   right: 0;
+  z-index: 20;
 }
 
 .github-logo {
