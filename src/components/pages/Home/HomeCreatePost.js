@@ -6,23 +6,23 @@ const HomeCreatePost = ({setOpenCreatePost}) => {
         <div id='create-post-dropdown-container'>
             <div id='create-dropdown'>
                 <div className='create-container'>
-                    <div>
+                    <div className='create-post-header'>
                         <h1>Create post</h1>
                     </div>
 
-                    <div>
-                        <input placeholder="What's on your mind, Charmika?"/>
+                    <div className='create-input-section'>
+                        <textarea placeholder="What's on your mind, Charmika?"/>
                     </div>
 
-                    <div>
+                    <div className='add-image-section'>
                         <p>Add to your post</p>
                     </div>
 
-                    <div>
-                        <button>
+                    <div className='create-buttons'>
+                        <button id='create-post'>
                             Post
                         </button>
-                        <button onClick={() => {setOpenCreatePost(prevState => !prevState)}}>
+                        <button id='cancel-create' onClick={() => {setOpenCreatePost(prevState => !prevState)}}>
                             Cancel
                         </button>
                     </div>
