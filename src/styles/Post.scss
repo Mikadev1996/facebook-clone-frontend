@@ -33,19 +33,51 @@
 }
 
 .post-info {
+  padding: 10px 0;
   display: flex;
-  height: 15px;
+  height: 25px;
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  color: var(--text-hidden-color);
+
+  div {
+    display: flex;
+  }
 }
 
 .post-like-container {
-  width: 100%;
+  width: calc(100% - 30px);
+  margin: 10px 0 10px 15px;
+  border-top: 1px solid var(--bac);
+  border-bottom: 1px solid var(--bac);
   height: 45px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+
+  p {
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    border-radius: var(--border-radius);
+  }
+
+  p:hover {
+    background-color: var(--hover-bg-color);
+    transition: all ease 300ms;
+  }
+}
+
+.fb-like {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.fb-like svg {
+  width: 20px;
+  height: 20px;
 }
 
 .post-add-comment-container {

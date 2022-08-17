@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
 
 const Post = () => {
     const [likes, setLikes] = useState(0);
@@ -20,7 +21,10 @@ const Post = () => {
                         Cupiditate debitis eum necessitatibus quibusdam rerum sequi tempora.</p>
                 </div>
                 <div className="post-footer">
-                    <div className='post-info'><p>Likes logo 17</p><p>X comments</p></div>
+                    <div className='post-info'>
+                        <div><span className='fb-like'><LikeIcon/></span><p>17</p></div>
+                        <p>X comments</p>
+                    </div>
                     <div className='post-like-container'>
                         <p>Like</p>
                         <p>Comment</p>
