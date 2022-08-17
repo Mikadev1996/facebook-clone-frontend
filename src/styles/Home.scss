@@ -1,8 +1,10 @@
 
 .content {
+ margin-top: 56px;
  min-height: calc(100vh - 56px - 200px);
  width: 100vw;
  background-color: var(--background-color);
  display: flex;
  justify-content: space-evenly;
+ z-index: -1;
 }

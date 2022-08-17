@@ -3,7 +3,8 @@ nav {
   height: 56px;
   background-color: var(--post-nav-background-color);
   display: flex;
-  position: relative;
+  position: fixed;
+  top: 0;
   justify-content: center;
   align-items: center;
 }
