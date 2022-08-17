@@ -5,7 +5,10 @@ function NavItem(props) {
 
     useEffect(() => {
         window.addEventListener("click", (e) => {
-            if (e.target.classList.contains('content create-bar posts-container')) {
+            if (e.target.classList.contains('content') ||
+                e.target.classList.contains('post-container') ||
+                e.target.classList.contains('create-bar')
+            ) {
                 setOpen(false);
             }
         })
