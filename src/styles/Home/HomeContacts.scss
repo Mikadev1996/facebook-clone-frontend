@@ -6,6 +6,7 @@
   width: 300px;
   min-height: 150px;
 
+  border-bottom: 1px solid var(--bac);
   max-height: calc(100% - 300px);
   position: fixed;
   margin-top: 25px;

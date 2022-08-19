@@ -1,13 +1,26 @@
 import React from 'react';
 
 const HomeContacts = () => {
+
+    const testRequest = () => {
+        const formData = JSON.stringify({
+            request_id: '62fea48af4099612b9488881',
+        });
+
+        fetch('https://sheltered-woodland-69437.herokuapp.com/api/friends/send', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+            .then(r => r.json())
+            .then(data => {
+                console.log(data);
+            });
+    }
+
     return (
         <div className='contacts-container'>
             <div className=''>
                 <p className="contacts-header">
                     Contacts
                 </p>
-                <ul className="contacts-list">
+                <ul className="contacts-list" onClick={() => testRequest()}>
                     <li className="content-nav-item">
                         <a href='/profile'><span className='icon-button'>😁</span></a>
                         <p>Friend 1</p>

@@ -9,6 +9,7 @@ const Nav = () => {
         if (storedTheme) {
             document.documentElement.setAttribute('data-theme', storedTheme)
         }
+
     }, []);
 
     return (
