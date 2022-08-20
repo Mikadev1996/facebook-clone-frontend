@@ -1,9 +1,52 @@
 import React, {useState} from "react";
+import { useNavigate } from 'react-router-dom';
 import Footer from "../Footer";
 
 const LogIn = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [formError, setFormError] = useState(false);
+
+    const nav = useNavigate();
+
+    const handleLogIn = (e) => {
+        e.preventDefault();
+        const formData = JSON.stringify({
+            username: username,
+            password: password
+        });
+        fetch('http://localhost:5000/api/user/sign-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+            .then(r => r.json())
+            .then(data => {
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', JSON.stringify(data.token));
+                    nav('/home');
+                }
+                else {
+                    window.alert("Error, incorrect user/password");
+                }
+            });
+    }
+
+    const handleTestLogIn = (e) => {
+        e.preventDefault();
+        const formData = JSON.stringify({
+            username: "test3",
+            password: "123"
+        });
+        fetch('http://localhost:5000/api/user/sign-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+            .then(r => r.json())
+            .then(data => {
+                if (data.token !== undefined) {
+                    localStorage.setItem('token', JSON.stringify(data.token));
+                    nav('/home');
+                }
+                else {
+                    setFormError(true);
+                    window.alert("Error, incorrect user/password");
+                }
+            });
+    }
 
     return (
         <div className='app'>
@@ -17,23 +60,22 @@ const LogIn = () => {
                         <div className="form-control">
                             <label htmlFor="username">Username</label>
                             <input type="text" placeholder="Username" id="username" name='username' onChange={e => setUsername(e.target.value)}/>
-                            <small>Error Message</small>
                         </div>
 
                         <div className="form-control">
                             <label htmlFor="password">Password</label>
                             <input type="password" placeholder="Password" id="password" maxLength="16" name='password' onChange={e => setPassword(e.target.value)}/>
-                            <small>Error Message</small>
+                            {formError && <small>Incorrect Username or Password</small>}
                         </div>
 
                         <div>
-                            <button className='form-submit' type="submit">Log In</button>
+                            <button onClick={e => handleLogIn(e)} className='form-submit' type="submit">Log In</button>
                         </div>
                         <div>
                             <button id='facebook-login' className='form-submit' type="submit">Log In with real Facebook</button>
                         </div>
                         <div>
-                            <button id='test-account-login' className='form-submit' type="submit">Test Account</button>
+                            <button onClick={e => handleTestLogIn(e)} id='test-account-login' className='form-submit' type="submit">Test Account</button>
                         </div>
                     </form>
                     <div className='hr-container'><hr className='form-hr'/></div>
