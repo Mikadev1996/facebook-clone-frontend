@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import HomeLeftNav from "./HomeLeftNav";
 import HomeContacts from "./HomeContacts";
 import Post from "../../Post";
 import HomeCreatePost from "./HomeCreatePost";
 
-const HomeContent = () => {
+const HomeContent = ({posts}) => {
     const [openCreatePost, setOpenCreatePost] = useState(false);
+
 
     return (
         <main className='content'>
@@ -19,10 +20,11 @@ const HomeContent = () => {
                     </div>
                 </div>
                 <div className='posts-list'>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
+                    {posts.length > 0 && posts.map((data) => {
+                        return (
+                            <Post data={data} />
+                        )
+                    })}
                 </div>
             </div>
 

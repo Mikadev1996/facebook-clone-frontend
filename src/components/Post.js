@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import moment from 'moment';
 import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
 
-const Post = () => {
+const Post = ({data}) => {
     const [likes, setLikes] = useState(0);
+    const dateFormatted = moment(data.timestamp).fromNow(true)
 
     return (
         <div className='post-container'>
@@ -11,14 +13,11 @@ const Post = () => {
                     <span className='icon-button'>🐶</span>
                     <div>
                         <p>Post Title</p>
-                        <p>timestamp Ago · Location</p>
+                        <p>{dateFormatted} Ago · Location</p>
                     </div>
                 </div>
                 <div className='post-content'>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Aliquam aliquid amet aspernatur beatae, cum dignissimos facere minima minus,
-                        nesciunt porro ullam voluptate.
-                        Cupiditate debitis eum necessitatibus quibusdam rerum sequi tempora.</p>
+                    <p>{data.text}</p>
                 </div>
                 <div className="post-footer">
                     <div className='post-info'>
