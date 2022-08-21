@@ -12,7 +12,7 @@ const Post = ({data}) => {
                 <div className='post-header'>
                     <span className='icon-button'>🐶</span>
                     <div>
-                        <p>Post Title</p>
+                        <p>{data.user.username}</p>
                         <p>{dateFormatted} Ago · Location</p>
                     </div>
                 </div>
@@ -21,7 +21,7 @@ const Post = ({data}) => {
                 </div>
                 <div className="post-footer">
                     <div className='post-info'>
-                        <div><span className='fb-like'><LikeIcon/></span><p>17</p></div>
+                        <div><span className='fb-like'><LikeIcon/></span><p>{data.likes}</p></div>
                         <p>0 comments</p>
                     </div>
                     <div className='post-like-container'>
