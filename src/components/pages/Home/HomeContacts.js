@@ -6,13 +6,12 @@ const HomeContacts = () => {
     const [friendsRequested, setFriendsRequested] = useState([]);
 
     useEffect(() => {
-        // getFriends();
-        // getFriendRequests();
-        // getFriendsRequested();
+        getFriends();
+        getFriendRequests();
+        getFriendsRequested();
     }, []);
 
     const testSendRequest = () => {
-        console.log("test request");
         const formData = JSON.stringify({
             request_id: '62fea48af4099612b9488881',
         });
@@ -26,7 +25,6 @@ const HomeContacts = () => {
     }
 
     const testAcceptRequest = () => {
-        console.log("test accept");
         const formData = JSON.stringify({
             request_id: '62fea48af4099612b9488881',
         });
@@ -40,29 +38,35 @@ const HomeContacts = () => {
     }
 
     const getFriends = () => {
-        fetch('http://localhost:5000/api/friends')
+        const token = localStorage.getItem('token');
+
+        fetch('http://localhost:5000/api/friends', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
                 console.log('friends: ', data);
-                setFriends([...friends, ...data.friends_list]);
+                setFriends([...friends, ...data.user_data.friends]);
             })
     }
 
     const getFriendRequests = () => {
-        fetch('http://localhost:5000/api/friends/requests')
+        const token = localStorage.getItem('token');
+
+        fetch('http://localhost:5000/api/friends/requests', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
                 console.log('friend requests: ', data);
-                setFriendRequests([...friendRequests, ...data.friend_requests]);
+                setFriendRequests([...friendRequests, ...data.user_data.friend_requests]);
             })
     }
 
     const getFriendsRequested = () => {
-        fetch('http://localhost:5000/api/friends/requested')
+        const token = localStorage.getItem('token');
+
+        fetch('http://localhost:5000/api/friends/requested', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
                 console.log('friends requested: ', data);
-                setFriendsRequested([...friendsRequested, ...data.friends_requested]);
+                setFriendsRequested([...friendsRequested, ...data.user_data.friends_requested]);
             })
     }
 
@@ -83,7 +87,11 @@ const HomeContacts = () => {
                         <p>Friend 2</p>
                     </li>
 
-                    <li className="content-nav-item">
+                    <li className="content-nav-item" onClick={() => {
+                        getFriends();
+                        getFriendRequests();
+                        getFriendsRequested()
+                    }}>
                         <a href='/profile'><span className='icon-button'>🤑</span></a>
                         <p>Friend 3</p>
                     </li>

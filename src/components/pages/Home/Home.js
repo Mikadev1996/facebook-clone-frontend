@@ -31,6 +31,9 @@ const Home = () => {
                     localStorage.removeItem('token');
                     nav('/');
                 }
+                else {
+                    console.log("User Authenticated");
+                }
             })
     }
 
