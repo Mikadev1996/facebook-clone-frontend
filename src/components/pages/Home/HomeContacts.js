@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 const HomeContacts = () => {
+    const [friends, setFriends] = useState([]);
+    const [friendRequests, setFriendRequests] = useState([]);
+    const [friendsRequested, setFriendsRequested] = useState([]);
+
+    useEffect(() => {
+        // getFriends();
+        // getFriendRequests();
+        // getFriendsRequested();
+    }, []);
 
     const testSendRequest = () => {
         console.log("test request");
@@ -28,6 +37,33 @@ const HomeContacts = () => {
                 console.log(data);
             })
             .catch(err => console.log(err));
+    }
+
+    const getFriends = () => {
+        fetch('http://localhost:5000/api/friends')
+            .then(r => r.json())
+            .then(data => {
+                console.log('friends: ', data);
+                setFriends([...friends, ...data.friends_list]);
+            })
+    }
+
+    const getFriendRequests = () => {
+        fetch('http://localhost:5000/api/friends/requests')
+            .then(r => r.json())
+            .then(data => {
+                console.log('friend requests: ', data);
+                setFriendRequests([...friendRequests, ...data.friend_requests]);
+            })
+    }
+
+    const getFriendsRequested = () => {
+        fetch('http://localhost:5000/api/friends/requested')
+            .then(r => r.json())
+            .then(data => {
+                console.log('friends requested: ', data);
+                setFriendsRequested([...friendsRequested, ...data.friends_requested]);
+            })
     }
 
     return (

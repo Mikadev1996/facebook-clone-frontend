@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CSSTransition } from "react-transition-group";
 import { ReactComponent as ArrowIcon } from '../styles/icons/arrow.svg';
 import { ReactComponent as CogIcon } from '../styles/icons/cog.svg';
@@ -9,6 +10,7 @@ function DropdownMenu() {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
     const dropdownRef = useRef(null);
+    const nav = useNavigate();
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
@@ -58,6 +60,15 @@ function DropdownMenu() {
         };
     }
 
+    const handleLogOut = () => {
+        fetch('http://localhost:5000/api/user/log-out', {method: 'POST'})
+            .then(r => r.json())
+            .then(data => {
+                localStorage.removeItem('token');
+                nav('/');
+            })
+    }
+
     return (
         <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
 
@@ -83,7 +94,7 @@ function DropdownMenu() {
                         Settings
                     </DropdownItem>
                     <DropdownItem leftIcon={<LogOutIcon />}>
-                        Log Out
+                        <p onClick={() => handleLogOut()}>Log Out</p>
                     </DropdownItem>
                 </div>
             </CSSTransition>

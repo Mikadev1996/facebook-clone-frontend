@@ -13,7 +13,8 @@ const Home = () => {
         fetch('http://localhost:5000/api/post')
             .then(r => r.json())
             .then(data => {
-                setPosts(posts => [...posts, ...data.posts]);
+                console.log(data);
+                // setPosts(posts => [...posts, ...data.posts]);
             })
     }
 
