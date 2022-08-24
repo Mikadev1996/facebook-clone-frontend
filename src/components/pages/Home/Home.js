@@ -6,7 +6,6 @@ import HomeContent from "./HomeContent";;
 
 const Home = () => {
     const nav = useNavigate();
-    const token = localStorage.getItem('token');
     const [posts, setPosts] = useState([]);
 
     const getPosts = () => {
@@ -24,6 +23,7 @@ const Home = () => {
     }, []);
 
     function checkAuth() {
+        const token = localStorage.getItem('token');
         fetch('http://localhost:5000/api/user', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {

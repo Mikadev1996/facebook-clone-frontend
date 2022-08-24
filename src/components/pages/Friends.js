@@ -13,15 +13,17 @@ const Friends = () => {
     }, []);
 
     function getUsers() {
+        const token = localStorage.getItem('token');
         fetch('http://localhost:5000/api/user/all', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                setUsers([...users, ...data.users]);
+                setUsers([...data.users]);
             })
 
     }
 
     function checkAuth() {
+        const token = localStorage.getItem('token');
         fetch('http://localhost:5000/api/user', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
@@ -32,12 +34,12 @@ const Friends = () => {
             })
     }
 
-    const User = () => {
+    const User = ({name, id}) => {
         return (
             <li className="content-nav-item">
                 <a href='/profile'><span className='icon-button'>😊</span></a>
-                <p>Friend 2</p>
-                <span className='icon-right'>➕</span>
+                <p>{name}</p>
+                <span className='icon-right' onClick={() => console.log(id)}>➕</span>
             </li>
         )
     }
@@ -59,7 +61,7 @@ const Friends = () => {
 
                         {users.length > 0 && users.map((data) => {
                             return (
-                                <User name={`${data.firstname} ${data.surname}`} id={data._id} />
+                                <User name={`${data.firstname} ${data.surname}`} id={data._id} key={data._id}/>
                             )
                         })}
                     </ul>
