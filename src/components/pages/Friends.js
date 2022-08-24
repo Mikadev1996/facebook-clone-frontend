@@ -19,7 +19,6 @@ const Friends = () => {
             .then(data => {
                 setUsers([...data.users]);
             })
-
     }
 
     function checkAuth() {
@@ -34,12 +33,32 @@ const Friends = () => {
             })
     }
 
+    function sendFriendRequest(requested_id) {
+        const formData = JSON.stringify({
+            requested_id: requested_id
+        })
+
+        const token = localStorage.getItem('token');
+        fetch('http://localhost:5000/api/friends/send', {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) {
+                    console.log(data);
+                }
+                else {
+                    console.log("request send")
+                    getUsers();
+                }
+            })
+
+    }
+
     const User = ({name, id}) => {
         return (
             <li className="content-nav-item">
                 <a href='/profile'><span className='icon-button'>😊</span></a>
                 <p>{name}</p>
-                <span className='icon-right' onClick={() => console.log(id)}>➕</span>
+                <span className='icon-right' onClick={() => sendFriendRequest(id)}>➕</span>
             </li>
         )
     }
