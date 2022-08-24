@@ -14,7 +14,7 @@ const Home = () => {
             .then(r => r.json())
             .then(data => {
                 console.log(data);
-                // setPosts(posts => [...posts, ...data.posts]);
+                setPosts(posts => [...posts, ...data.posts]);
             })
     }
 
@@ -30,9 +30,6 @@ const Home = () => {
                 if (data.error) {
                     localStorage.removeItem('token');
                     nav('/');
-                }
-                else {
-                    console.log("User Authenticated");
                 }
             })
     }

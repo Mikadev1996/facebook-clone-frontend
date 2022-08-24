@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Friends from "../Friends";
 
 const HomeContacts = () => {
     const [friends, setFriends] = useState([]);
@@ -12,27 +13,22 @@ const HomeContacts = () => {
     }, []);
 
     const testSendRequest = () => {
-        const formData = JSON.stringify({
-            request_id: '62fea48af4099612b9488881',
-        });
-
-        fetch('http://localhost:5000/api/friends/send', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
-            .then(r => r.json())
-            .then(data => {
-                console.log(data);
-            })
-            .catch(err => console.log(err));
+        // fetch('http://localhost:5000/api/friends/send', {method: 'POST', headers:{'Content-Type': 'application/json'}})
+        //     .then(r => r.json())
+        //     .then(data => {
+        //         console.log('Friend request sent');
+        //     })
+        //     .catch(err => console.log(err));
+        console.log(friends)
+        console.log(friendRequests)
+        console.log(friendsRequested)
     }
 
     const testAcceptRequest = () => {
-        const formData = JSON.stringify({
-            request_id: '62fea48af4099612b9488881',
-        });
-
-        fetch('http://localhost:5000/api/friends/accept', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        fetch('http://localhost:5000/api/friends/accept', {method: 'POST', headers:{'Content-Type': 'application/json'}})
             .then(r => r.json())
             .then(data => {
-                console.log(data);
+                console.log('Friend request accepted');
             })
             .catch(err => console.log(err));
     }
@@ -43,7 +39,6 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                console.log('friends: ', data);
                 setFriends([...friends, ...data.user_data.friends]);
             })
     }
@@ -54,7 +49,6 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends/requests', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                console.log('friend requests: ', data);
                 setFriendRequests([...friendRequests, ...data.user_data.friend_requests]);
             })
     }
@@ -65,9 +59,28 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends/requested', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                console.log('friends requested: ', data);
                 setFriendsRequested([...friendsRequested, ...data.user_data.friends_requested]);
             })
+    }
+
+    const Friend = ({name, id}) => {
+        return (
+            <li className="content-nav-item" onClick={() => testSendRequest()}>
+                <a href='/profile'><span className='icon-button' onClick={() => console.log(id)}>😁</span></a>
+                <p>{name}</p>
+            </li>
+        )
+    }
+
+    const FriendRequests = ({name, id}) => {
+        return (
+            <li className="content-nav-item">
+                <a href='/profile'><span className='icon-button'>😁</span></a>
+                <p>{name}</p>
+                <span className='icon-right' onClick={() => console.log(id)}>🟢</span>
+                {/*<span className='icon-right'>❌</span>*/}
+            </li>
+        )
     }
 
     return (
@@ -79,127 +92,34 @@ const HomeContacts = () => {
                 <ul className="contacts-list" >
                     <li className="content-nav-item" onClick={() => testSendRequest()}>
                         <a href='/profile'><span className='icon-button'>😁</span></a>
-                        <p>Friend 1</p>
+                        <p>Example Friend 1</p>
                     </li>
 
-                    <li className="content-nav-item" onClick={() => testAcceptRequest()}>
-                        <a href='/profile'><span className='icon-button'>😊</span></a>
-                        <p>Friend 2</p>
-                    </li>
-
-                    <li className="content-nav-item" onClick={() => {
-                        getFriends();
-                        getFriendRequests();
-                        getFriendsRequested()
-                    }}>
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                    </li>
+                    {friends.length > 0 && friends.map((data) => {
+                        return (
+                            <Friends name={`${data.firstname} ${data.surname}`} id={data._id} />
+                        )
+                    })}
                 </ul>
             </div>
             <div className=''>
                 <p className="contacts-header">
                     Friend Requests
                 </p>
+
                 <ul className="contacts-list">
                     <li className="content-nav-item">
                         <a href='/profile'><span className='icon-button'>😁</span></a>
                         <p>Friend 1</p>
                         <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
+                        {/*<span className='icon-right'>❌</span>*/}
                     </li>
 
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>😊</span></a>
-                        <p>Friend 2</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-                    </li>
-
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
-                    <li className="content-nav-item">
-                        <a href='/profile'><span className='icon-button'>🤑</span></a>
-                        <p>Friend 3</p>
-                        <span className='icon-right'>🟢</span>
-                        <span className='icon-right'>❌</span>
-
-                    </li>
+                    {friendRequests.length > 0 && friendRequests.map((data) => {
+                        return (
+                            <FriendRequests name={`${data.firstname} ${data.surname}`} id={data._id} />
+                        )
+                    })}
                 </ul>
             </div>
         </div>
