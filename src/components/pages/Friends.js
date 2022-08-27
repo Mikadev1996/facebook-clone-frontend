@@ -11,7 +11,7 @@ const Friends = () => {
     useEffect(() => {
         checkAuth();
         getFilteredUsers()
-            .then(data => console.log(data))
+            .then(data => setFilteredUsers(data));
     }, []);
 
     async function getFilteredUsers() {
@@ -25,8 +25,11 @@ const Friends = () => {
         const requestedUsers = await fetch('http://localhost:5000/api/friends/requested', formData);
         let requestedUsersData = await requestedUsers.json();
 
+        console.log(requestedUsersData);
         allUsersData = allUsersData.users;
-        requestedUsersData = requestedUsersData.user_data;
+        requestedUsersData = requestedUsersData.user_data.friends_requested;
+        // console.log(allUsersData);
+        // console.log(requestedUsersData);
         if (!requestedUsersData) return allUsersData;
 
 
@@ -62,13 +65,14 @@ const Friends = () => {
         fetch('http://localhost:5000/api/friends/send', formData)
             .then(r => r.json())
             .then(data => {
-                if (data.error) {
-                    console.log(data);
-                } else {
-                    console.log("request send")
-                    // getUsers();
+                if (data.error) console.log(data );
+                else {
+                    console.log("request sent");
+                    getFilteredUsers().then(data => setFilteredUsers(data));
                 }
+
             })
+            .catch(err => console.log('Error: ', err));
 
     }
 

@@ -13,12 +13,12 @@ const HomeContacts = () => {
     }, []);
 
     const testSendRequest = () => {
-        // fetch('http://localhost:5000/api/friends/send', {method: 'POST', headers:{'Content-Type': 'application/json'}})
-        //     .then(r => r.json())
-        //     .then(data => {
-        //         console.log('Friend request sent');
-        //     })
-        //     .catch(err => console.log(err));
+        fetch('http://localhost:5000/api/friends/send', {method: 'POST', headers:{'Content-Type': 'application/json'}})
+            .then(r => r.json())
+            .then(data => {
+                console.log('Friend request sent');
+            })
+            .catch(err => console.log(err));
         console.log(friends)
         console.log(friendRequests)
         console.log(friendsRequested)
@@ -39,7 +39,7 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                setFriends([...friends, ...data.user_data.friends]);
+                setFriends([...data.user_data.friends]);
             })
     }
 
@@ -49,7 +49,7 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends/requests', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                setFriendRequests([...friendRequests, ...data.user_data.friend_requests]);
+                setFriendRequests([...data.user_data.friend_requests]);
             })
     }
 
@@ -59,7 +59,7 @@ const HomeContacts = () => {
         fetch('http://localhost:5000/api/friends/requested', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
-                setFriendsRequested([...friendsRequested, ...data.user_data.friends_requested]);
+                setFriendsRequested([...data.user_data.friends_requested]);
             })
     }
 
@@ -97,7 +97,7 @@ const HomeContacts = () => {
 
                     {friends.length > 0 && friends.map((data) => {
                         return (
-                            <Friends name={`${data.firstname} ${data.surname}`} id={data._id} />
+                            <Friend name={`${data.firstname} ${data.surname}`} id={data._id} />
                         )
                     })}
                 </ul>
