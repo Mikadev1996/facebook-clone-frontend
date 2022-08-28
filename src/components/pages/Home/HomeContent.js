@@ -4,14 +4,14 @@ import HomeContacts from "./HomeContacts";
 import Post from "../../Post";
 import HomeCreatePost from "./HomeCreatePost";
 
-const HomeContent = ({posts}) => {
+const HomeContent = ({posts, user}) => {
     const [openCreatePost, setOpenCreatePost] = useState(false);
 
 
     return (
         <main className='content'>
             {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} />}
-            <HomeLeftNav />
+            <HomeLeftNav user={user}/>
             <div className="posts-container">
                 <div className='create-bar'>
                     <div>

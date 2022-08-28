@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavItem from "./NavItem";
 import DropdownMenu from "./DropDownMenu";
 
-const Nav = () => {
+const Nav = ({user}) => {
 
     useEffect(() => {
         let storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
@@ -27,7 +27,7 @@ const Nav = () => {
                 </div>
                 <div className='nav-last'>
                     <NavItem icon="😍">
-                        <DropdownMenu/>
+                        <DropdownMenu user={user}/>
                     </NavItem>
                 </div>
             </div>

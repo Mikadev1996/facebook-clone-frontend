@@ -7,6 +7,7 @@ import HomeContent from "./HomeContent";;
 const Home = () => {
     const nav = useNavigate();
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState({});
 
     const getPosts = () => {
         fetch('http://localhost:5000/api/post')
@@ -30,14 +31,16 @@ const Home = () => {
                 if (data.error) {
                     localStorage.removeItem('token');
                     nav('/');
+                    return;
                 }
+                setUser(data.user);
             })
     }
 
     return (
         <div className='app'>
-            <Nav />
-            <HomeContent posts={posts} />
+            <Nav user={user}/>
+            <HomeContent posts={posts} user={user} />
             <Footer />
         </div>
     )

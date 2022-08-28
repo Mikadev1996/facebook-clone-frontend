@@ -6,7 +6,7 @@ import { ReactComponent as CogIcon } from '../styles/icons/cog.svg';
 import { ReactComponent as ChevronIcon } from '../styles/icons/chevron.svg';
 import { ReactComponent as LogOutIcon } from '../styles/icons/logout_icon.svg';
 
-function DropdownMenu() {
+function DropdownMenu({user}) {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
     const dropdownRef = useRef(null);
@@ -28,7 +28,13 @@ function DropdownMenu() {
         }, []);
 
         return (
-            <a href="#" className="menu-item" onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+            <a href="#" className="menu-item" onClick={() => {
+                if (props.action) {
+                    props.action()
+                    return;
+                }
+                props.goToMenu && setActiveMenu(props.goToMenu)
+            }}>
                 <span className="icon-button">{props.leftIcon}</span>
                 {props.children}
                 <span className="icon-right">{props.rightIcon}</span>
@@ -83,7 +89,7 @@ function DropdownMenu() {
                         <div className='profile-container'>
                             <div>
                                 <span className="icon-button">😎</span>
-                                <p>Charmika Devendra</p>
+                                <p>{user.firstname + " " + user.lastname}</p>
                             </div>
                         </div>
                     </a>
@@ -93,7 +99,7 @@ function DropdownMenu() {
                         goToMenu="settings">
                         Settings
                     </DropdownItem>
-                    <DropdownItem leftIcon={<LogOutIcon />}>
+                    <DropdownItem leftIcon={<LogOutIcon />} action={handleLogOut}>
                         <p onClick={() => handleLogOut()}>Log Out</p>
                     </DropdownItem>
                 </div>
