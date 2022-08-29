@@ -29,6 +29,26 @@ const HomeContacts = () => {
             })
     }
 
+    const denyRequest = (id) => {
+        const token = localStorage.getItem('token');
+        const formData = {
+            method: 'POST',
+            body: JSON.stringify({
+                sender_id: id
+            }),
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+        };
+
+        fetch('http://localhost:5000/api/friends/deny', formData)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) return console.log(data);
+                console.log('request denied');
+                getFriends();
+                getFriendRequests();
+            })
+    }
+
     const getFriends = () => {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
@@ -66,7 +86,7 @@ const HomeContacts = () => {
                 <a href='/profile'><span className='icon-button'>😁</span></a>
                 <p>{name}</p>
                 <span className='icon-right' onClick={() => acceptRequest(id)}>🟢</span>
-                {/*<span className='icon-right'>❌</span>*/}
+                <span className='icon-right' onClick={() => denyRequest(id)}>❌</span>
             </li>
         )
     }

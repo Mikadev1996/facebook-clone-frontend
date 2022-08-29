@@ -19,16 +19,21 @@ const Friends = () => {
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
         const allUsers = await fetch('http://localhost:5000/api/user/all', formData);
-        let allUsersData = await allUsers.json();
         const requestedUsers = await fetch('http://localhost:5000/api/friends/requested', formData);
+        const friends = await fetch('http://localhost:5000/api/friends', formData);
+
+        let allUsersData = await allUsers.json();
         let requestedUsersData = await requestedUsers.json();
+        let friendsData = await friends.json();
 
         allUsersData = allUsersData.users;
         requestedUsersData = requestedUsersData.user_data.friends_requested;
+        friendsData = friendsData.user_data.friends;
 
         if (!requestedUsersData) return allUsersData;
 
-        const filteredUsers = allUsersData.filter(item => !requestedUsersData.includes(item._id));
+        let filteredUsers = allUsersData.filter(item => !requestedUsersData.includes(item._id));
+        filteredUsers = filteredUsers.filter(item => !friendsData.includes(item._id));
         return filteredUsers;
     }
 

@@ -16,7 +16,7 @@ const HomeContent = ({posts, user}) => {
                 <div className='create-bar'>
                     <div>
                         <span className='icon-button'>😂</span>
-                        <p onClick={() => setOpenCreatePost(prevState => !prevState)}>What's on your mind, Charmika?</p>
+                        <p onClick={() => setOpenCreatePost(prevState => !prevState)}>What's on your mind, {user.firstname}?</p>
                     </div>
                 </div>
                 <div className='posts-list'>

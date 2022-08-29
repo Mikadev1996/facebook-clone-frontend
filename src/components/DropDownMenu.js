@@ -89,7 +89,7 @@ function DropdownMenu({user}) {
                         <div className='profile-container'>
                             <div>
                                 <span className="icon-button">😎</span>
-                                <p>{user.firstname + " " + user.lastname}</p>
+                                <p>{user.firstname + " " + user.surname}</p>
                             </div>
                         </div>
                     </a>
