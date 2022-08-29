@@ -20,6 +20,7 @@ const LogIn = () => {
             .then(data => {
                 if (data.token !== undefined) {
                     localStorage.setItem('token', JSON.stringify(data.token));
+                    localStorage.setItem('user_id', JSON.stringify(data.user._id));
                     nav('/home');
                 }
                 else {
@@ -39,6 +40,7 @@ const LogIn = () => {
             .then(data => {
                 if (data.token !== undefined) {
                     localStorage.setItem('token', JSON.stringify(data.token));
+                    localStorage.setItem('user_id', JSON.stringify(data.user._id));
                     nav('/home');
                 }
                 else {

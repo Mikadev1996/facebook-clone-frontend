@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 
-const HomeCreatePost = ({setOpenCreatePost}) => {
+const HomeCreatePost = ({setOpenCreatePost, getPosts}) => {
     const [text, setText] = useState('');
     const nav = useNavigate();
 
@@ -22,7 +22,7 @@ const HomeCreatePost = ({setOpenCreatePost}) => {
                     return;
                 }
                 setOpenCreatePost(prevState => !prevState);
-                nav('/home')
+                getPosts();
             })
     }
 

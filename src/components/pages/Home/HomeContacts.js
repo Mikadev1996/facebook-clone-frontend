@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-const HomeContacts = () => {
+const HomeContacts = ({getPosts}) => {
     const [friends, setFriends] = useState([]);
     const [friendRequests, setFriendRequests] = useState([]);
 
@@ -26,6 +26,7 @@ const HomeContacts = () => {
                 console.log('request accepted');
                 getFriends();
                 getFriendRequests();
+                getPosts();
             })
     }
 
@@ -74,7 +75,7 @@ const HomeContacts = () => {
     const Friend = ({name, id}) => {
         return (
             <li className="content-nav-item">
-                <a href='/profile'><span className='icon-button' onClick={() => console.log(id)}>😁</span></a>
+                <a href='/profile'><span className='icon-button'>😁</span></a>
                 <p>{name}</p>
             </li>
         )

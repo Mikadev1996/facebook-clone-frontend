@@ -4,13 +4,13 @@ import HomeContacts from "./HomeContacts";
 import Post from "../../Post";
 import HomeCreatePost from "./HomeCreatePost";
 
-const HomeContent = ({posts, user}) => {
+const HomeContent = ({posts, user, getPosts}) => {
     const [openCreatePost, setOpenCreatePost] = useState(false);
 
 
     return (
         <main className='content'>
-            {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} />}
+            {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} getPosts={getPosts}/>}
             <HomeLeftNav user={user}/>
             <div className="posts-container">
                 <div className='create-bar'>
@@ -22,13 +22,13 @@ const HomeContent = ({posts, user}) => {
                 <div className='posts-list'>
                     {posts.length > 0 && posts.map((data) => {
                         return (
-                            <Post data={data} />
+                            <Post data={data} key={data._id}/>
                         )
                     })}
                 </div>
             </div>
 
-            <HomeContacts />
+            <HomeContacts getPosts={getPosts}/>
         </main>
     )
 }

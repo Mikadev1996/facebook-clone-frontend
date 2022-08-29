@@ -5,6 +5,7 @@ import Footer from "../Footer";
 
 const Friends = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [user, setUser] = useState({});
 
     const nav = useNavigate();
 
@@ -49,6 +50,7 @@ const Friends = () => {
                     localStorage.removeItem('token');
                     nav('/');
                 }
+                setUser(data.user);
             })
     }
 
@@ -83,7 +85,7 @@ const Friends = () => {
 
     return (
         <div className='app'>
-            <Nav/>
+            <Nav user={user}/>
             <main className='friends-content'>
                 <div className='post-1'>
                     <h2 className="contacts-header">

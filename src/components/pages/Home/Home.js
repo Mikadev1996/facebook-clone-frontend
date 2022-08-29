@@ -11,11 +11,24 @@ const Home = () => {
     const [user, setUser] = useState({});
 
     async function getPosts() {
+        let user_id = localStorage.getItem('user_id').replaceAll('"', '');
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
         const allPosts = await fetch('http://localhost:5000/api/post')
         const allFriends = await fetch('http://localhost:5000/api/friends', formData)
+
+        let allPostsData = await allPosts.json();
+        let allFriendsData = await allFriends.json();
+
+        allFriendsData = allFriendsData.user_data.friends;
+        allFriendsData = allFriendsData.map(data => data._id);
+        allFriendsData.push(user_id); // So current user posts still render
+        allPostsData = allPostsData.posts;
+
+        allPostsData = allPostsData.filter(item => allFriendsData.includes(item.user._id));
+
+        setPosts([...allPostsData])
     }
 
     useEffect(() => {
@@ -40,7 +53,7 @@ const Home = () => {
     return (
         <div className='app'>
             <Nav user={user}/>
-            <HomeContent posts={posts} user={user} />
+            <HomeContent posts={posts} user={user} getPosts={getPosts}/>
             <Footer />
         </div>
     )
