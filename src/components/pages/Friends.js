@@ -29,6 +29,7 @@ const Friends = () => {
         allUsersData = allUsersData.users;
         requestedUsersData = requestedUsersData.user_data.friends_requested;
         friendsData = friendsData.user_data.friends;
+        friendsData = friendsData.map(data => data._id);
 
         if (!requestedUsersData) return allUsersData;
 
