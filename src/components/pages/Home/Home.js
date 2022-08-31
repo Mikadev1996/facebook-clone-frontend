@@ -34,6 +34,12 @@ const Home = () => {
     useEffect(() => {
         getPosts();
         checkAuth();
+        const token = localStorage.getItem('token');
+        fetch('http://localhost:5000/api/friends/filtered', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+            .then(r => r.json())
+            .then(data => {
+                console.log(data);
+            })
     }, []);
 
     function checkAuth() {

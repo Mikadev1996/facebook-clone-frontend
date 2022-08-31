@@ -1,10 +1,42 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
 
 const Post = ({data}) => {
-    const [likes, setLikes] = useState(0);
+    const [likes, setLikes] = useState(data.likes);
+    const [isLiked, setIsLiked] = useState(false);
     const dateFormatted = moment(data.timestamp).fromNow(true)
+
+    useEffect(() => {
+        // isPostLiked();
+
+    }, [])
+
+    const isPostLiked = () => {
+        fetch('http://localhost:5000/user/posts-liked')
+            .then(r => r.json())
+            .then(response => {
+                if (response.includes(data._id)) setIsLiked(true);
+            })
+    }
+
+    const handleLike = () => {
+        const token = localStorage.getItem('token');
+        const formData = {
+            method: 'PUT',
+            body: JSON.stringify({
+                post_id: data._id
+            }),
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+        };
+
+        if (isLiked) {
+            fetch('http://localhost:5000/api/post')
+        }
+        else {
+
+        }
+    }
 
     return (
         <div className='post-container'>
@@ -21,11 +53,11 @@ const Post = ({data}) => {
                 </div>
                 <div className="post-footer">
                     <div className='post-info'>
-                        <div><span className='fb-like'><LikeIcon/></span><p>{data.likes}</p></div>
+                        <div><span className='fb-like'><LikeIcon/></span><p>{likes}</p></div>
                         <p>0 comments</p>
                     </div>
                     <div className='post-like-container'>
-                        <p>Like</p>
+                        <p onClick={() => handleLike()}>Like</p>
                         <p>Comment</p>
                         <p>Share</p>
                     </div>

@@ -11,32 +11,19 @@ const Friends = () => {
 
     useEffect(() => {
         checkAuth();
-        getFilteredUsers()
-            .then(data => setFilteredUsers(data));
+        getFilteredUsers();
     }, []);
 
     async function getFilteredUsers() {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        const allUsers = await fetch('http://localhost:5000/api/user/all', formData);
-        const requestedUsers = await fetch('http://localhost:5000/api/friends/requested', formData);
-        const friends = await fetch('http://localhost:5000/api/friends', formData);
-
-        let allUsersData = await allUsers.json();
-        let requestedUsersData = await requestedUsers.json();
-        let friendsData = await friends.json();
-
-        allUsersData = allUsersData.users;
-        requestedUsersData = requestedUsersData.user_data.friends_requested;
-        friendsData = friendsData.user_data.friends;
-        friendsData = friendsData.map(data => data._id);
-
-        if (!requestedUsersData) return allUsersData;
-
-        let filteredUsers = allUsersData.filter(item => !requestedUsersData.includes(item._id));
-        filteredUsers = filteredUsers.filter(item => !friendsData.includes(item._id));
-        return filteredUsers;
+        fetch('http://localhost:5000/api/friends/filtered', formData)
+            .then(r => r.json())
+            .then(data => {
+                setFilteredUsers(data.friends_data)
+            })
+            .catch(err => console.log(err));
     }
 
     function checkAuth() {
