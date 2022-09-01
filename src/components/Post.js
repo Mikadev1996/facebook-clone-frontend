@@ -8,16 +8,20 @@ const Post = ({data}) => {
     const dateFormatted = moment(data.timestamp).fromNow(true)
 
     useEffect(() => {
-        // isPostLiked();
-
+        isPostLiked();
     }, [])
 
     const isPostLiked = () => {
-        fetch('http://localhost:5000/user/posts-liked')
+        const token = localStorage.getItem('token');
+        const formData = {
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+        };
+        fetch('http://localhost:5000/api/user/posts-liked', formData)
             .then(r => r.json())
             .then(response => {
-                if (response.includes(data._id)) setIsLiked(true);
+                response.user_data.likes.includes(data._id) ? setIsLiked(true) : setIsLiked(false);
             })
+            .catch(err => console.log(err));
     }
 
     const handleLike = () => {
@@ -30,11 +34,17 @@ const Post = ({data}) => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        if (isLiked) {
-            fetch('http://localhost:5000/api/post')
+        if (!isLiked) {
+            setIsLiked(true);
+            setLikes(likes => likes + 1);
+            fetch(`http://localhost:5000/api/post/${data._id}/like`, formData)
+                .catch(err => console.log(err));
         }
         else {
-
+            setIsLiked(false);
+            setLikes(likes => likes -1);
+            fetch(`http://localhost:5000/api/post/${data._id}/unlike`, formData)
+                .catch(err => console.log(err));
         }
     }
 
@@ -57,7 +67,7 @@ const Post = ({data}) => {
                         <p>0 comments</p>
                     </div>
                     <div className='post-like-container'>
-                        <p onClick={() => handleLike()}>Like</p>
+                        {isLiked ? <p style={{color: '#21d939'}} onClick={() => handleLike()}>Like</p> : <p onClick={() => handleLike()}>Like</p>}
                         <p>Comment</p>
                         <p>Share</p>
                     </div>
