@@ -1,10 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 
-const ProfileHeader = ({setOpenMenu, openMenu}) => {
-
-    useEffect(() => {
-        console.log(openMenu);
-    })
+const ProfileHeader = ({setOpenMenu, openMenu, user}) => {
 
     const handleFriendsMenu = () => {
         setOpenMenu('friends')
@@ -20,8 +16,8 @@ const ProfileHeader = ({setOpenMenu, openMenu}) => {
             <div className='profile-header-content'>
                 <span className='icon-button-profile'>🤠</span>
                 <div>
-                    <h1>Charmika Devendra</h1>
-                    <p>212 friends</p>
+                    <h1>{user.firstname + " " + user.surname}</h1>
+                    {user.friends && <p>{user.friends.length} friends</p>}
                 </div>
             </div>
 

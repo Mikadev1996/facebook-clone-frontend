@@ -1,7 +1,7 @@
 import React from "react";
-import Post from "../../Post";
+import moment from 'moment';
 
-const ProfileMain = () => {
+const ProfileMain = ({user}) => {
 
     return (
         <div className='profile-main'>
@@ -11,11 +11,11 @@ const ProfileMain = () => {
                         <div className='post-1'>
                             <h1>Intro</h1>
                             <div>
-                                <p>Add your bio here...</p>
+                                {user.biography === "" ? <p>Add a Bio...</p> : <p>{user.biography}</p>}
                             </div>
                             <div>
-                                <p>From <strong>Berlin, Germany</strong></p>
-                                <p>Born <strong>23/11/2000</strong></p>
+                                <p>Joined <strong>{moment(user.date_joined).format('MMMM Do YYYY')}</strong></p>
+                                <p>Born <strong>{moment(user.date_of_birth).format('MMMM Do YYYY')}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ const ProfileMain = () => {
                         </div>
                     </div>
                     <div className='post-container'>
-                        <Post />
+                        {/*<Post />*/}
                     </div>
                 </div>
             </div>

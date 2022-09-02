@@ -84,7 +84,7 @@ const HomeContacts = ({getPosts}) => {
     const FriendRequests = ({name, id}) => {
         return (
             <li className="content-nav-item">
-                <a href='/profile'><span className='icon-button'>😁</span></a>
+                <a href={`/profile/${id}`}><span className='icon-button'>😁</span></a>
                 <p>{name}</p>
                 <span className='icon-right' onClick={() => acceptRequest(id)}>🟢</span>
                 <span className='icon-right' onClick={() => denyRequest(id)}>❌</span>
@@ -102,7 +102,7 @@ const HomeContacts = ({getPosts}) => {
 
                     {friends.length > 0 && friends.map((data) => {
                         return (
-                            <Friend name={`${data.firstname} ${data.surname}`} id={data._id} />
+                            <Friend name={`${data.firstname} ${data.surname}`} id={data._id} key={data._id}/>
                         )
                     })}
 
@@ -117,7 +117,7 @@ const HomeContacts = ({getPosts}) => {
 
                     {friendRequests.length > 0 && friendRequests.map((data) => {
                         return (
-                            <FriendRequests name={`${data.firstname} ${data.surname}`} id={data._id} />
+                            <FriendRequests name={`${data.firstname} ${data.surname}`} id={data._id} key={data._id}/>
                         )
                     })}
 
