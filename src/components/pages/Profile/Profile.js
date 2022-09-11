@@ -10,15 +10,17 @@ const Profile = () => {
     const { id } = useParams();
     const [openMenu, setOpenMenu] = useState('main');
     const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState([])
     const nav = useNavigate();
 
     useEffect(() => {
         checkAuth();
         getUser();
+        getUserPosts();
     }, []);
 
     function checkAuth() {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
         fetch('http://localhost:5000/api/users', formData)
@@ -33,7 +35,7 @@ const Profile = () => {
     }
 
     const getUser = () => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
         const formData = {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
@@ -44,10 +46,22 @@ const Profile = () => {
             .catch(err => console.log(err));
     }
 
+    const getUserPosts = () => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
+        };
+
+        fetch(`http://localhost:5000/api/posts/user/${id}`, formData)
+            .then(r => r.json())
+            .then(data => setPosts([...data.posts]))
+            .catch(err => console.log(err));
+    }
+
     return (
         <div className='app'>
             <Nav user={user} />
-            {user && openMenu === 'main' && <ProfileContent setOpenMenu={setOpenMenu} openMenu={openMenu} user={user}/>}
+            {user && openMenu === 'main' && <ProfileContent posts={posts} setOpenMenu={setOpenMenu} openMenu={openMenu} user={user}/>}
             {user && openMenu === 'friends' && <ProfileFriends setOpenMenu={setOpenMenu} openMenu={openMenu} user={user}/>}
             <Footer/>
         </div>

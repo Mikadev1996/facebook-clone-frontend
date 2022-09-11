@@ -2,27 +2,16 @@ import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
 
-const Post = ({data}) => {
+const Post = ({data, likedPosts}) => {
     const [likes, setLikes] = useState(data.likes);
     const [isLiked, setIsLiked] = useState(false);
     const dateFormatted = moment(data.timestamp).fromNow(true)
 
     useEffect(() => {
-        isPostLiked();
+        likedPosts.includes(data._id) ? setIsLiked(true) : setIsLiked(false);
     }, [])
 
-    const isPostLiked = () => {
-        const token = localStorage.getItem('token');
-        const formData = {
-            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-        };
-        fetch('http://localhost:5000/api/users/posts-liked', formData)
-            .then(r => r.json())
-            .then(response => {
-                response.user_data.likes.includes(data._id) ? setIsLiked(true) : setIsLiked(false);
-            })
-            .catch(err => console.log(err));
-    }
+
 
     const handleLike = () => {
         const token = localStorage.getItem('token');
@@ -37,13 +26,13 @@ const Post = ({data}) => {
         if (!isLiked) {
             setIsLiked(true);
             setLikes(likes => likes + 1);
-            fetch(`http://localhost:5000/api/post/${data._id}/like`, formData)
+            fetch(`http://localhost:5000/api/posts/${data._id}/like`, formData)
                 .catch(err => console.log(err));
         }
         else {
             setIsLiked(false);
             setLikes(likes => likes -1);
-            fetch(`http://localhost:5000/api/post/${data._id}/unlike`, formData)
+            fetch(`http://localhost:5000/api/posts/${data._id}/unlike`, formData)
                 .catch(err => console.log(err));
         }
     }

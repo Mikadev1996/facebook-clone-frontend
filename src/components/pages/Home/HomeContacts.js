@@ -10,7 +10,7 @@ const HomeContacts = ({getPosts}) => {
     }, []);
 
     const acceptRequest = (id) => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
         const formData = {
             method: 'POST',
             body: JSON.stringify({
@@ -31,7 +31,7 @@ const HomeContacts = ({getPosts}) => {
     }
 
     const denyRequest = (id) => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
         const formData = {
             method: 'POST',
             body: JSON.stringify({
@@ -51,7 +51,7 @@ const HomeContacts = ({getPosts}) => {
     }
 
     const getFriends = () => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));;
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
         fetch('http://localhost:5000/api/friends', formData)
@@ -62,7 +62,7 @@ const HomeContacts = ({getPosts}) => {
     }
 
     const getFriendRequests = () => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));;
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
         fetch('http://localhost:5000/api/friends/requests', formData)
@@ -74,10 +74,12 @@ const HomeContacts = ({getPosts}) => {
 
     const Friend = ({name, id}) => {
         return (
-            <li className="content-nav-item">
-                <a href='/profile'><span className='icon-button'>😁</span></a>
-                <p>{name}</p>
-            </li>
+            <a href={`/profile/${id}`}>
+                <li className="content-nav-item">
+                    <span className='icon-button'>😁</span>
+                    <p>{name}</p>
+                </li>
+            </a>
         )
     }
 

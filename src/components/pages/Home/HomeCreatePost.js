@@ -6,14 +6,14 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts}) => {
     const nav = useNavigate();
 
     const submitPost = (e) => {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('token'));
 
         e.preventDefault();
         const formData = JSON.stringify({
             text: text,
         })
 
-        fetch('http://localhost:5000/api/post/create', {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        fetch('http://localhost:5000/api/posts/create', {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
                 if (data.error) {

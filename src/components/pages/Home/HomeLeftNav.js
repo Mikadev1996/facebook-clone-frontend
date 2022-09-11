@@ -4,7 +4,7 @@ import FriendsIcon from '../../../styles/icons/friends_icon.png';
 const HomeLeftNav = ({user}) => {
     return (
         <div className='content-nav'>
-            <a href='/profile/123' className="content-nav-item">
+            <a href={`/profile/${user._id}`} className="content-nav-item">
                 <span className='icon-button'>😎</span>
                 <p>{user.firstname + " " + user.surname}</p>
             </a>
