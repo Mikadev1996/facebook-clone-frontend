@@ -16,7 +16,7 @@ const Post = ({data}) => {
         const formData = {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
-        fetch('http://localhost:5000/api/user/posts-liked', formData)
+        fetch('http://localhost:5000/api/users/posts-liked', formData)
             .then(r => r.json())
             .then(response => {
                 response.user_data.likes.includes(data._id) ? setIsLiked(true) : setIsLiked(false);

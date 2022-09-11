@@ -15,7 +15,7 @@ const LogIn = () => {
             username: username,
             password: password
         });
-        fetch('http://localhost:5000/api/user/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        fetch('http://localhost:5000/api/users/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
             .then(r => r.json())
             .then(data => {
                 if (data.token !== undefined) {
@@ -35,7 +35,7 @@ const LogIn = () => {
             username: "testing",
             password: "123"
         });
-        fetch('http://localhost:5000/api/user/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        fetch('http://localhost:5000/api/users/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
             .then(r => r.json())
             .then(data => {
                 if (data.token !== undefined) {

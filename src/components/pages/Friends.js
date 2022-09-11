@@ -30,7 +30,7 @@ const Friends = () => {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
-        fetch('http://localhost:5000/api/user', formData)
+        fetch('http://localhost:5000/api/users', formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {

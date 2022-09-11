@@ -67,7 +67,7 @@ function DropdownMenu({user}) {
     }
 
     const handleLogOut = () => {
-        fetch('http://localhost:5000/api/user/log-out', {method: 'POST'})
+        fetch('http://localhost:5000/api/users/log-out', {method: 'POST'})
             .then(r => r.json())
             .then(data => {
                 localStorage.removeItem('token');

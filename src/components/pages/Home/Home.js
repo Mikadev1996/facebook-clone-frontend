@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../../Footer";
 import Nav from "../../Nav";
-import HomeContent from "./HomeContent";;
+import HomeContent from "./HomeContent";
 
 const Home = () => {
     const nav = useNavigate();
@@ -15,7 +15,7 @@ const Home = () => {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        const allPosts = await fetch('http://localhost:5000/api/post')
+        const allPosts = await fetch('http://localhost:5000/api/posts')
         const allFriends = await fetch('http://localhost:5000/api/friends', formData)
 
         let allPostsData = await allPosts.json();
@@ -38,7 +38,9 @@ const Home = () => {
 
     function checkAuth() {
         const token = localStorage.getItem('token');
-        fetch('http://localhost:5000/api/user', {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
+
+        fetch('http://localhost:5000/api/users', formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
