@@ -17,7 +17,7 @@ const Home = () => {
 
         fetch('http://localhost:5000/api/posts/friends', formData)
             .then(r => r.json())
-            .then(data => console.log(data))
+            .then(data => setPosts([...data.posts]))
             .catch(err => console.log(err));
     }
 
