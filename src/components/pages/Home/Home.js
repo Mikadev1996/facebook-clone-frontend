@@ -9,15 +9,13 @@ const Home = () => {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
 
-    async function getPosts() {
-        let user_id = JSON.parse(localStorage.getItem('user_id'));
+    function getPosts() {
         const token = JSON.parse(localStorage.getItem('token'));
-
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
         fetch('http://localhost:5000/api/posts/friends', formData)
             .then(r => r.json())
-            .then(data => setPosts([...data.posts]))
+            .then(data => {setPosts([...data.posts])})
             .catch(err => console.log(err));
     }
 

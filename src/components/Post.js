@@ -2,15 +2,10 @@ import React, {useEffect, useState} from 'react';
 import moment from 'moment';
 import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
 
-const Post = ({data, likedPosts}) => {
+const Post = ({data}) => {
     const [likes, setLikes] = useState(data.likes);
-    const [isLiked, setIsLiked] = useState(false);
+    const [isLiked, setIsLiked] = useState(data.isLiked);
     const dateFormatted = moment(data.timestamp).fromNow(true)
-
-    useEffect(() => {
-        likedPosts.includes(data._id) ? setIsLiked(true) : setIsLiked(false);
-    }, [])
-
 
 
     const handleLike = () => {
@@ -43,8 +38,8 @@ const Post = ({data, likedPosts}) => {
                 <div className='post-header'>
                     <span className='icon-button'>🐶</span>
                     <div>
-                        <p>{data.user.username}</p>
-                        <p>{dateFormatted} Ago · Location</p>
+                        <a href={`/profile/${data.user._id}`}><p>{data.user.username}</p></a>
+                        <p>{dateFormatted} Ago · United Kingdom</p>
                     </div>
                 </div>
                 <div className='post-content'>

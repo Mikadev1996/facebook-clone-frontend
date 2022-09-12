@@ -6,24 +6,6 @@ import HomeCreatePost from "./HomeCreatePost";
 
 const HomeContent = ({posts, user, getPosts}) => {
     const [openCreatePost, setOpenCreatePost] = useState(false);
-    const [likedPosts, setLikedPosts] = useState([]);
-
-    useEffect(() => {
-        usersLikedPosts();
-    }, [])
-
-    const usersLikedPosts = () => {
-        const token = JSON.parse(localStorage.getItem('token'));
-        const formData = {
-            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
-        };
-        fetch('http://localhost:5000/api/users/posts-liked', formData)
-            .then(r => r.json())
-            .then(response => {
-                setLikedPosts(response.user_data.likes)
-            })
-            .catch(err => console.log(err));
-    }
 
     return (
         <main className='content'>
@@ -39,7 +21,7 @@ const HomeContent = ({posts, user, getPosts}) => {
                 <div className='posts-list'>
                     {posts.length > 0 && posts.map((data) => {
                         return (
-                            <Post data={data} key={data._id} likedPosts={likedPosts}/>
+                            <Post data={data} key={data._id}/>
                         )
                     })}
                 </div>
