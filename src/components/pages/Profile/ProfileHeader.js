@@ -16,7 +16,7 @@ const ProfileHeader = ({setOpenMenu, openMenu, user, profile, setBio, setDob}) =
 
     return (
         <div className='profile-header-container'>
-            {openProfileEdit && <ProfileEdit setOpenProfileEdit={setOpenProfileEdit} setDob={setDob} setBio={setBio}/>}
+            {openProfileEdit && <ProfileEdit setOpenProfileEdit={setOpenProfileEdit} setDob={setDob} setBio={setBio} profile={profile}/>}
             <div className='profile-header-content'>
                 <span className='icon-button-profile'>🤠</span>
                 <div>

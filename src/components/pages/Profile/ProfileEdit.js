@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate, useParams} from 'react-router-dom';
 import { config } from '../../../Constants';
 
-const ProfileEdit = ({setOpenProfileEdit, setBio, setDob}) => {
+const ProfileEdit = ({setOpenProfileEdit, setBio, setDob, profile}) => {
     const { id } = useParams();
     const [text, setText] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
@@ -44,12 +44,12 @@ const ProfileEdit = ({setOpenProfileEdit, setBio, setDob}) => {
                     </div>
 
                     <div className='create-input-section'>
-                        <textarea placeholder="Enter your biography!" onChange={e => setText(e.target.value)}/>
+                        <textarea placeholder="Enter your biography!" onChange={e => setText(e.target.value)} defaultValue={profile.biography}/>
                     </div>
 
                     <div className='create-input-section'>
                         <label htmlFor='date_of_birth'>Date of Birth</label>
-                    <input type='date' id='date_of_birth' name='date_of_birth' onChange={(e) => setDateOfBirth(e.target.value)}/>
+                        <input type='date' id='date_of_birth' name='date_of_birth' onChange={(e) => setDateOfBirth(e.target.value)} defaultValue={profile.date_of_birth.split('T')[0]}/>
                     </div>
 
                     <div className='create-buttons'>
