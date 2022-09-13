@@ -7,6 +7,9 @@ import ProfileContent from "./ProfileContent";
 import ProfileFriends from "./ProfileFriends";
 import { config } from '../../../Constants';
 
+import './styles/ProfileHeader.scss';
+import './styles/ProfileMain.scss';
+
 const Profile = () => {
     const { id } = useParams();
     const [openMenu, setOpenMenu] = useState('main');
