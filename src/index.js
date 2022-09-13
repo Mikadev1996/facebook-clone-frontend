@@ -9,9 +9,6 @@ import './styles/SignUp.scss';
 import './styles/LogIn.scss';
 import './styles/Forms.scss';
 
-require('dotenv').config()
-
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>

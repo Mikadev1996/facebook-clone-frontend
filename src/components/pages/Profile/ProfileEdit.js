@@ -1,21 +1,27 @@
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import { config } from '../../../Constants';
 
-const ProfileEdit = ({setOpenProfileEdit}) => {
+const ProfileEdit = ({setOpenProfileEdit, setBio, setDob}) => {
+    const { id } = useParams();
     const [text, setText] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
     const nav = useNavigate();
     const url = config.url.BASE_URL;
 
-    const submitPost = (e) => {
-        const token = JSON.parse(localStorage.getItem('token'));
-
+    const updateProfile = (e) => {
         e.preventDefault();
-        const formData = JSON.stringify({
-            text: text,
-        })
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+            body: JSON.stringify({
+                biography: text,
+                date_of_birth: dateOfBirth
+            })
+        }
 
-        fetch(`${url}/api/posts/create`, {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        fetch(`${url}/users/${id}/biography`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
@@ -23,6 +29,8 @@ const ProfileEdit = ({setOpenProfileEdit}) => {
                     nav('/');
                     return;
                 }
+                setBio(text);
+                setDob(dateOfBirth);
                 setOpenProfileEdit(prevState => !prevState);
             })
     }
@@ -32,20 +40,21 @@ const ProfileEdit = ({setOpenProfileEdit}) => {
             <div id='create-dropdown'>
                 <div className='create-container'>
                     <div className='create-post-header'>
-                        <h1>Create post</h1>
+                        <h1>Edit Profile</h1>
                     </div>
 
                     <div className='create-input-section'>
-                        <textarea placeholder="What's on your mind, Charmika?" onChange={e => setText(e.target.value)}/>
+                        <textarea placeholder="Enter your biography!" onChange={e => setText(e.target.value)}/>
                     </div>
 
-                    <div className='add-image-section'>
-                        <p>Add to your post</p>
+                    <div className='create-input-section'>
+                        <label htmlFor='date_of_birth'>Date of Birth</label>
+                    <input type='date' id='date_of_birth' name='date_of_birth' onChange={(e) => setDateOfBirth(e.target.value)}/>
                     </div>
 
                     <div className='create-buttons'>
-                        <button id='create-post' onClick={e => submitPost(e)}>
-                            Post
+                        <button id='create-post' onClick={e => updateProfile(e)}>
+                            Update
                         </button>
                         <button id='cancel-create' onClick={() => {setOpenProfileEdit(prevState => !prevState)}}>
                             Cancel

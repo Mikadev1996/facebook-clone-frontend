@@ -10,4 +10,6 @@ const development = {
     }
 }
 
-export const config = process.env.NODE_ENV === 'development' ? development:production;
+const mode = 'development'
+
+export const config = mode === 'development' ? development : production;

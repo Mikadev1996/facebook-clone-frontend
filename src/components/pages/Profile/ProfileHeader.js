@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
+import ProfileEdit from "./ProfileEdit";
+import {useParams} from "react-router-dom";
 
-const ProfileHeader = ({setOpenMenu, openMenu, user, setOpenProfileEdit}) => {
+const ProfileHeader = ({setOpenMenu, openMenu, user, profile, setBio, setDob}) => {
+    const [openProfileEdit, setOpenProfileEdit] = useState(false);
+    const { id } = useParams();
 
     const handleFriendsMenu = () => {
         setOpenMenu('friends')
@@ -12,12 +16,12 @@ const ProfileHeader = ({setOpenMenu, openMenu, user, setOpenProfileEdit}) => {
 
     return (
         <div className='profile-header-container'>
-
+            {openProfileEdit && <ProfileEdit setOpenProfileEdit={setOpenProfileEdit} setDob={setDob} setBio={setBio}/>}
             <div className='profile-header-content'>
                 <span className='icon-button-profile'>🤠</span>
                 <div>
-                    <h1>{user.firstname + " " + user.surname}</h1>
-                    {user.friends && <p>{user.friends.length} friends</p>}
+                    <h1>{profile.firstname + " " + profile.surname}</h1>
+                    {profile.friends && <p>{profile.friends.length} friends</p>}
                 </div>
             </div>
 
@@ -27,7 +31,7 @@ const ProfileHeader = ({setOpenMenu, openMenu, user, setOpenProfileEdit}) => {
                     {openMenu === 'friends' ? <p id='friends-select' className='home-logo' onClick={handleFriendsMenu}>Friends</p> : <p id='friends-select' onClick={handleFriendsMenu}>Friends</p> }
                 </div>
                 <div>
-                    <button onClick={setOpenProfileEdit(prevState => !prevState)}>Edit Profile</button>
+                    {user._id === id && <button onClick={() => setOpenProfileEdit(prevState => !prevState)}>Edit Profile</button>}
                 </div>
             </div>
         </div>

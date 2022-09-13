@@ -3,7 +3,7 @@ import moment from 'moment';
 import Post from "../../Post";
 import { config } from "../../../Constants";
 
-const ProfileMain = ({user, posts}) => {
+const ProfileMain = ({user, posts, bio, dob, profile}) => {
     const [likedPosts, setLikedPosts] = useState([]);
     const url = config.url.BASE_URL;
 
@@ -32,11 +32,11 @@ const ProfileMain = ({user, posts}) => {
                         <div className='post-1'>
                             <h1>Intro</h1>
                             <div>
-                                {user.biography === "" ? <p>Add a Bio...</p> : <p>{user.biography}</p>}
+                                {bio === "" ? <p>Add a Bio...</p> : <p>{bio}</p>}
                             </div>
                             <div>
-                                <p>Joined <strong>{moment(user.date_joined).format('MMMM Do YYYY')}</strong></p>
-                                <p>Born <strong>{moment(user.date_of_birth).format('MMMM Do YYYY')}</strong></p>
+                                <p>Joined <strong>{moment(profile.date_joined).format('MMMM Do YYYY')}</strong></p>
+                                <p>Born <strong>{moment(dob).format('MMMM Do YYYY')}</strong></p>
                             </div>
                         </div>
                     </div>

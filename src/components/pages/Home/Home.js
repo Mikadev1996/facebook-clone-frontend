@@ -5,11 +5,11 @@ import Nav from "../../Nav";
 import HomeContent from "./HomeContent";
 import { config } from "../../../Constants";
 
-import './styles/Home/Home.scss';
-import './styles/Home/HomeContent.scss';
-import './styles/Home/HomeContacts.scss';
-import './styles/Home/HomeLeftNav.scss';
-import './styles/Home/HomeCreatePost.scss';
+import '../../../styles/Home/Home.scss';
+import '../../../styles/Home/HomeContent.scss';
+import '../../../styles/Home/HomeContacts.scss';
+import '../../../styles/Home/HomeLeftNav.scss';
+import '../../../styles/Home/HomeCreatePost.scss';
 
 const Home = () => {
     const nav = useNavigate();
