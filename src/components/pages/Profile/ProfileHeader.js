@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProfileEdit from "./ProfileEdit";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import { config } from "../../../Constants";
 
 const ProfileHeader = ({setOpenMenu, openMenu, user, profile, setBio, setDob}) => {
     const [openProfileEdit, setOpenProfileEdit] = useState(false);
     const { id } = useParams();
+    const url = config.url.BASE_URL;
+    const userFriends = user.friends.map(item => item._id);
+    const nav = useNavigate();
 
     const handleFriendsMenu = () => {
         setOpenMenu('friends')
@@ -12,6 +16,22 @@ const ProfileHeader = ({setOpenMenu, openMenu, user, profile, setBio, setDob}) =
 
     const handlePostsMenu = () => {
         setOpenMenu('main')
+    }
+
+    const deleteFriend = () => {
+        const token = JSON.parse(localStorage.getItem('token'));
+        const formData = {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+        }
+
+        fetch(`${url}/friends/delete/${id}`, formData)
+            .then(r => r.json())
+            .then(data => {
+                if (data.error) return console.log(data);
+                nav('/home');
+            })
+            .catch(err => console.log(err));
     }
 
     return (
@@ -32,6 +52,7 @@ const ProfileHeader = ({setOpenMenu, openMenu, user, profile, setBio, setDob}) =
                 </div>
                 <div>
                     {user._id === id && <button onClick={() => setOpenProfileEdit(prevState => !prevState)}>Edit Profile</button>}
+                    {userFriends.includes(profile._id.toString()) && <button className='delete-friend' onClick={() => deleteFriend()}>Delete Friend</button>}
                 </div>
             </div>
         </div>
