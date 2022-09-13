@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import { config } from '../../../Constants';
 
-const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
+const ProfileEdit = ({setOpenProfileEdit}) => {
     const [text, setText] = useState('');
     const nav = useNavigate();
     const url = config.url.BASE_URL;
@@ -15,7 +15,7 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
             text: text,
         })
 
-        fetch(`${url}/posts/create`, {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
+        fetch(`${url}/api/posts/create`, {method: 'POST', body: formData, headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}})
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
@@ -23,8 +23,7 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
                     nav('/');
                     return;
                 }
-                setOpenCreatePost(prevState => !prevState);
-                getPosts();
+                setOpenProfileEdit(prevState => !prevState);
             })
     }
 
@@ -37,7 +36,7 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
                     </div>
 
                     <div className='create-input-section'>
-                        <textarea placeholder={`What's on your mind, ${user.firstname}?`} onChange={e => setText(e.target.value)}/>
+                        <textarea placeholder="What's on your mind, Charmika?" onChange={e => setText(e.target.value)}/>
                     </div>
 
                     <div className='add-image-section'>
@@ -48,7 +47,7 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
                         <button id='create-post' onClick={e => submitPost(e)}>
                             Post
                         </button>
-                        <button id='cancel-create' onClick={() => {setOpenCreatePost(prevState => !prevState)}}>
+                        <button id='cancel-create' onClick={() => {setOpenProfileEdit(prevState => !prevState)}}>
                             Cancel
                         </button>
                     </div>
@@ -58,4 +57,4 @@ const HomeCreatePost = ({setOpenCreatePost, getPosts, user}) => {
     )
 }
 
-export default HomeCreatePost;
+export default ProfileEdit;

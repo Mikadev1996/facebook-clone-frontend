@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import moment from 'moment';
 import { ReactComponent as LikeIcon } from "../styles/icons/facebook-like.svg";
+import { config } from '../Constants';
 
 const Post = ({data}) => {
     const [likes, setLikes] = useState(data.likes);
     const [isLiked, setIsLiked] = useState(data.isLiked);
-    const dateFormatted = moment(data.timestamp).fromNow(true)
-
+    const dateFormatted = moment(data.timestamp).fromNow(true);
+    const url = config.url.BASE_URL;
 
     const handleLike = () => {
         const token = localStorage.getItem('token');
@@ -21,13 +22,13 @@ const Post = ({data}) => {
         if (!isLiked) {
             setIsLiked(true);
             setLikes(likes => likes + 1);
-            fetch(`http://localhost:5000/api/posts/${data._id}/like`, formData)
+            fetch(`${url}/posts/${data._id}/like`, formData)
                 .catch(err => console.log(err));
         }
         else {
             setIsLiked(false);
             setLikes(likes => likes -1);
-            fetch(`http://localhost:5000/api/posts/${data._id}/unlike`, formData)
+            fetch(`${url}/posts/${data._id}/unlike`, formData)
                 .catch(err => console.log(err));
         }
     }

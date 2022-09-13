@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
+import {config} from "../../../Constants";
 
 const HomeContacts = ({getPosts}) => {
     const [friends, setFriends] = useState([]);
     const [friendRequests, setFriendRequests] = useState([]);
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         getFriends();
@@ -19,7 +21,7 @@ const HomeContacts = ({getPosts}) => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        fetch('http://localhost:5000/api/friends/accept', formData)
+        fetch(`${url}/friends/accept`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) return console.log(data);
@@ -40,7 +42,7 @@ const HomeContacts = ({getPosts}) => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        fetch('http://localhost:5000/api/friends/deny', formData)
+        fetch(`${url}/friends/deny`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) return console.log(data);
@@ -54,7 +56,7 @@ const HomeContacts = ({getPosts}) => {
         const token = JSON.parse(localStorage.getItem('token'));;
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        fetch('http://localhost:5000/api/friends', formData)
+        fetch(`${url}/friends`, formData)
             .then(r => r.json())
             .then(data => {
                 setFriends([...data.user_data.friends]);
@@ -65,7 +67,7 @@ const HomeContacts = ({getPosts}) => {
         const token = JSON.parse(localStorage.getItem('token'));;
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        fetch('http://localhost:5000/api/friends/requests', formData)
+        fetch(`${url}/friends/requests`, formData)
             .then(r => r.json())
             .then(data => {
                 setFriendRequests([...data.user_data.friend_requests]);

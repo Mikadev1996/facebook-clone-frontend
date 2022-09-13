@@ -2,23 +2,24 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import Nav from "../Nav";
 import Footer from "../Footer";
+import { config } from "../../Constants";
 
 const Friends = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [user, setUser] = useState({});
-
     const nav = useNavigate();
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         checkAuth();
         getFilteredUsers();
     }, []);
 
-    async function getFilteredUsers() {
+    function getFilteredUsers() {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        fetch('http://localhost:5000/api/friends/filtered', formData)
+        fetch(`${url}/friends/filtered`, formData)
             .then(r => r.json())
             .then(data => {
                 setFilteredUsers(data.friends_data)
@@ -30,7 +31,7 @@ const Friends = () => {
         const token = localStorage.getItem('token');
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
-        fetch('http://localhost:5000/api/users', formData)
+        fetch(`${url}/users`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
@@ -49,7 +50,7 @@ const Friends = () => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        fetch('http://localhost:5000/api/friends/send', formData)
+        fetch(`${url}/friends/send`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) return console.log(data );

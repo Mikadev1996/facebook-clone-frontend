@@ -5,13 +5,16 @@ import Nav from "../../Nav";
 import Footer from "../../Footer";
 import ProfileContent from "./ProfileContent";
 import ProfileFriends from "./ProfileFriends";
+import { config } from '../../../Constants';
 
 const Profile = () => {
     const { id } = useParams();
     const [openMenu, setOpenMenu] = useState('main');
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState([])
+    const [openProfileEdit, setOpenProfileEdit] = useState(false);
     const nav = useNavigate();
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         checkAuth();
@@ -23,7 +26,7 @@ const Profile = () => {
         const token = JSON.parse(localStorage.getItem('token'));
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
-        fetch('http://localhost:5000/api/users', formData)
+        fetch(`${url}/users`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {
@@ -40,7 +43,7 @@ const Profile = () => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        fetch(`http://localhost:5000/api/users/${id}`, formData)
+        fetch(`${url}/users/${id}`, formData)
             .then(r => r.json())
             .then(data => setUser(data.user_data))
             .catch(err => console.log(err));
@@ -52,7 +55,7 @@ const Profile = () => {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
 
-        fetch(`http://localhost:5000/api/posts/user/${id}`, formData)
+        fetch(`${url}/posts/user/${id}`, formData)
             .then(r => r.json())
             .then(data => setPosts([...data.posts]))
             .catch(err => console.log(err));

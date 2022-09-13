@@ -5,12 +5,14 @@ import { ReactComponent as ArrowIcon } from '../styles/icons/arrow.svg';
 import { ReactComponent as CogIcon } from '../styles/icons/cog.svg';
 import { ReactComponent as ChevronIcon } from '../styles/icons/chevron.svg';
 import { ReactComponent as LogOutIcon } from '../styles/icons/logout_icon.svg';
+import { config } from "../Constants";
 
 function DropdownMenu({user}) {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
     const dropdownRef = useRef(null);
     const nav = useNavigate();
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         setMenuHeight(dropdownRef.current?.firstChild.offsetHeight)
@@ -67,7 +69,7 @@ function DropdownMenu({user}) {
     }
 
     const handleLogOut = () => {
-        fetch('http://localhost:5000/api/users/log-out', {method: 'POST'})
+        fetch(`${url}/users/log-out`, {method: 'POST'})
             .then(r => r.json())
             .then(data => {
                 localStorage.removeItem('token');

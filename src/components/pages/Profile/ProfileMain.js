@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import moment from 'moment';
 import Post from "../../Post";
+import { config } from "../../../Constants";
 
 const ProfileMain = ({user, posts}) => {
     const [likedPosts, setLikedPosts] = useState([]);
+    const url = config.url.BASE_URL;
 
     useEffect(() => {
         usersLikedPosts();
@@ -14,7 +16,7 @@ const ProfileMain = ({user, posts}) => {
         const formData = {
             headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}
         };
-        fetch('http://localhost:5000/api/users/posts-liked', formData)
+        fetch(`${url}/users/posts-liked`, formData)
             .then(r => r.json())
             .then(response => {
                 setLikedPosts(response.user_data.likes)

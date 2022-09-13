@@ -3,17 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import Footer from "../../Footer";
 import Nav from "../../Nav";
 import HomeContent from "./HomeContent";
+import { config } from "../../../Constants";
 
 const Home = () => {
     const nav = useNavigate();
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
+    const url = config.url.BASE_URL;
 
     function getPosts() {
         const token = JSON.parse(localStorage.getItem('token'));
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
 
-        fetch('http://localhost:5000/api/posts/friends', formData)
+        fetch(`${url}/posts/friends`, formData)
             .then(r => r.json())
             .then(data => {setPosts([...data.posts])})
             .catch(err => console.log(err));
@@ -28,7 +30,7 @@ const Home = () => {
         const token = JSON.parse(localStorage.getItem('token'));
         const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
-        fetch('http://localhost:5000/api/users', formData)
+        fetch(`${url}/users`, formData)
             .then(r => r.json())
             .then(data => {
                 if (data.error) {

@@ -18,7 +18,6 @@ const Footer = () => {
                     <li>Deutsch</li>
                 </ul>
                 <ul className='pageFooterLinkList'>
-                    <a href='/sign-up'><li>Sign Up</li></a>
                     <a href='/'><li>Log In</li></a>
                     <a href='https://github.com/Mikadev1996'><li>Mika's GitHub</li></a>
                     <a href='/home'><li>Home</li></a>

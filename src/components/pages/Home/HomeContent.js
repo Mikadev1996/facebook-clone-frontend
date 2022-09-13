@@ -9,7 +9,7 @@ const HomeContent = ({posts, user, getPosts}) => {
 
     return (
         <main className='content'>
-            {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} getPosts={getPosts}/>}
+            {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} getPosts={getPosts} user={user}/>}
             <HomeLeftNav user={user}/>
             <div className="posts-container">
                 <div className='create-bar'>

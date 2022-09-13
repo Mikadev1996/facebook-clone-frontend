@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfileHeader = ({setOpenMenu, openMenu, user}) => {
+const ProfileHeader = ({setOpenMenu, openMenu, user, setOpenProfileEdit}) => {
 
     const handleFriendsMenu = () => {
         setOpenMenu('friends')
@@ -27,7 +27,7 @@ const ProfileHeader = ({setOpenMenu, openMenu, user}) => {
                     {openMenu === 'friends' ? <p id='friends-select' className='home-logo' onClick={handleFriendsMenu}>Friends</p> : <p id='friends-select' onClick={handleFriendsMenu}>Friends</p> }
                 </div>
                 <div>
-                    <button>Edit Profile</button>
+                    <button onClick={setOpenProfileEdit(prevState => !prevState)}>Edit Profile</button>
                 </div>
             </div>
         </div>
