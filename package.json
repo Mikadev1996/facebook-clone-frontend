@@ -40,7 +40,8 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.0.2"
+    "dotenv": "^16.0.2",
+    "use-local-storage": "^2.3.6"
   },
   "browser": {
     "fs": false,

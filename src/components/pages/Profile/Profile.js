@@ -9,6 +9,7 @@ import { config } from '../../../Constants';
 
 import '../../../styles/ProfileHeader.scss';
 import '../../../styles/ProfileMain.scss';
+import useLocalStorage from "use-local-storage";
 
 const Profile = () => {
     const { id } = useParams();
@@ -18,6 +19,14 @@ const Profile = () => {
     const [posts, setPosts] = useState([]);
     const nav = useNavigate();
     const url = config.url.BASE_URL;
+
+    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme)
+    }
 
     useEffect(() => {
         checkAuth();
@@ -65,8 +74,8 @@ const Profile = () => {
     }
 
     return (
-        <div className='app'>
-            <Nav user={user} />
+        <div className='app' data-theme={theme}>
+            <Nav user={user} toggleTheme={toggleTheme}/>
             {user && profile && openMenu === 'main' && <ProfileContent posts={posts} setOpenMenu={setOpenMenu} openMenu={openMenu} user={user} profile={profile}/>}
             {user && profile && openMenu === 'friends' && <ProfileFriends setOpenMenu={setOpenMenu} openMenu={openMenu} user={user} profile={profile}/>}
             <Footer/>

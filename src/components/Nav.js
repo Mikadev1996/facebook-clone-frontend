@@ -2,16 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavItem from "./NavItem";
 import DropdownMenu from "./DropDownMenu";
 
-const Nav = ({user}) => {
-
-    useEffect(() => {
-        let storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        if (storedTheme) {
-            document.documentElement.setAttribute('data-theme', storedTheme)
-        }
-
-    }, []);
-
+const Nav = ({user, toggleTheme}) => {
     return (
         <nav>
             <div className='nav-container'>
@@ -27,7 +18,7 @@ const Nav = ({user}) => {
                 </div>
                 <div className='nav-last'>
                     <NavItem icon="😍">
-                        <DropdownMenu user={user}/>
+                        <DropdownMenu user={user} toggleTheme={toggleTheme}/>
                     </NavItem>
                 </div>
             </div>

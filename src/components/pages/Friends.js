@@ -2,13 +2,22 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from 'react-router-dom';
 import Nav from "../Nav";
 import Footer from "../Footer";
-import { config } from "../../Constants";
+import {config} from "../../Constants";
+import useLocalStorage from "use-local-storage";
 
 const Friends = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [user, setUser] = useState({});
     const nav = useNavigate();
     const url = config.url.BASE_URL;
+
+    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme)
+    }
 
     useEffect(() => {
         checkAuth();
@@ -17,14 +26,18 @@ const Friends = () => {
 
     function getFilteredUsers() {
         const token = localStorage.getItem('token');
-        const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}};
+        const formData = {headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`}}
 
         fetch(`${url}/friends/filtered`, formData)
             .then(r => r.json())
             .then(data => {
-                setFilteredUsers(data.friends_data)
+                if (data.error) {
+                    localStorage.removeItem('token');
+                    nav('/');
+                    return;
+                }
+                setFilteredUsers(data.friends)
             })
-            .catch(err => console.log(err));
     }
 
     function checkAuth() {
@@ -53,9 +66,8 @@ const Friends = () => {
         fetch(`${url}/friends/send`, formData)
             .then(r => r.json())
             .then(data => {
-                if (data.error) return console.log(data );
-                console.log("request sent");
-                getFilteredUsers().then(data => setFilteredUsers(data));
+                if (data.error) return console.log(data);
+                getFilteredUsers();
             })
             .catch(err => console.log('Error: ', err));
 
@@ -64,7 +76,7 @@ const Friends = () => {
     const User = ({name, id}) => {
         return (
             <li className="content-nav-item">
-                <a href='/profile'><span className='icon-button'>😊</span></a>
+                <a href={`/profile/${id}`}><span className='icon-button'>😊</span></a>
                 <p>{name}</p>
                 <span className='icon-right' onClick={() => sendFriendRequest(id)}>➕</span>
             </li>
@@ -72,8 +84,8 @@ const Friends = () => {
     }
 
     return (
-        <div className='app'>
-            <Nav user={user}/>
+        <div className='app' data-theme={theme}>
+            <Nav user={user} toggleTheme={toggleTheme}/>
             <main className='friends-content'>
                 <div className='post-1'>
                     <h2 className="contacts-header">

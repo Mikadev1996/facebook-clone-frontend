@@ -7,9 +7,11 @@
  display: flex;
  justify-content: space-evenly;
  z-index: 0;
+ transition: all ease 300ms;
 }
 
 .friends-content {
+ color: var(--text-color);
  margin-top: 56px;
  min-height: calc(100vh - 56px - 200px);
  width: 100vw;

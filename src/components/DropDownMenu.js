@@ -7,7 +7,7 @@ import { ReactComponent as ChevronIcon } from '../styles/icons/chevron.svg';
 import { ReactComponent as LogOutIcon } from '../styles/icons/logout_icon.svg';
 import { config } from "../Constants";
 
-function DropdownMenu({user}) {
+function DropdownMenu({user, toggleTheme}) {
     const [activeMenu, setActiveMenu] = useState('main');
     const [menuHeight, setMenuHeight] = useState(null);
     const dropdownRef = useRef(null);
@@ -24,11 +24,6 @@ function DropdownMenu({user}) {
     }
 
     function DropdownItem(props) {
-
-        useEffect(() => {
-            handleDarkModeToggle();
-        }, []);
-
         return (
             <a href="#" className="menu-item" onClick={() => {
                 if (props.action) {
@@ -42,30 +37,6 @@ function DropdownMenu({user}) {
                 <span className="icon-right">{props.rightIcon}</span>
             </a>
         );
-    }
-
-    const handleDarkModeToggle = () => {
-        let toggle = document.getElementById("theme-toggle");
-        if (toggle === null) {
-            return;
-        }
-
-        let storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-        if (storedTheme) {
-            document.documentElement.setAttribute('data-theme', storedTheme)
-        }
-
-        toggle.onclick = () => {
-            let currentTheme = document.documentElement.getAttribute("data-theme");
-            let targetTheme = "light";
-
-            if (currentTheme === "light") {
-                targetTheme = "dark";
-            }
-
-            document.documentElement.setAttribute('data-theme', targetTheme)
-            localStorage.setItem('theme', targetTheme);
-        };
     }
 
     const handleLogOut = () => {
@@ -118,7 +89,7 @@ function DropdownMenu({user}) {
                         <h2>Back</h2>
                     </DropdownItem>
                     <DropdownItem leftIcon="🌗">
-                        <button id='theme-toggle'>Toggle theme</button>
+                        <button id='theme-toggle' onClick={toggleTheme}>Toggle theme</button>
                     </DropdownItem>
                 </div>
             </CSSTransition>

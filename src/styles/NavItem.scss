@@ -85,7 +85,8 @@
   padding: 1rem;
   overflow: hidden;
   transition: height var(--speed) ease;
-  box-shadow:  0 2px 12px rgba(0, 0, 0, 0.2)
+  box-shadow:  0 2px 12px rgba(0, 0, 0, 0.2);
+  color: var(--text-color);
 }
 
 .menu {

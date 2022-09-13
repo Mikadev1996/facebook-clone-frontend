@@ -6,9 +6,7 @@
 
 :root {
   --background-color: #fff;
-  --text-color: #121416d8;
   --link-color: #543fd7;
-
   --bg:  #242526;
   --bg-accent: #484a4d;
   --nav-size: 60px;
@@ -21,8 +19,31 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+//
+//html[data-theme='light'] {
+//  --bac: #dcdcdc;
+//  --icon-bg-color: rgba(229, 226, 226, 0.76);
+//  --hover-bg-color: #d7d5d5;
+//  --background-color: #F0F2F5;
+//  --input-background-color: #E4E6DB;
+//  --post-nav-background-color: #FFFFFF;
+//  --text-color: #050505;
+//  --text-hidden-color: #65676B;
+//}
+//
+//html[data-theme='dark'] {
+//  --bac: #323233;
+//  --icon-bg-color: #484a4d;
+//  --hover-bg-color: #525357;
+//  --background-color: #18191a;
+//  --input-background-color: #303031;
+//  --post-nav-background-color: #242526;
+//  --text-color: #E4E6EB;
+//  --text-hidden-color: #B0B3B8;
+//  color-scheme: dark;
+//}
 
-html[data-theme='light'] {
+[data-theme='light'] {
   --bac: #dcdcdc;
   --icon-bg-color: rgba(229, 226, 226, 0.76);
   --hover-bg-color: #d7d5d5;
@@ -33,7 +54,7 @@ html[data-theme='light'] {
   --text-hidden-color: #65676B;
 }
 
-html[data-theme='dark'] {
+[data-theme='dark'] {
   --bac: #323233;
   --icon-bg-color: #484a4d;
   --hover-bg-color: #525357;

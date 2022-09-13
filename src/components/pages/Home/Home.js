@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
+import useLocalStorage from 'use-local-storage'
 import Footer from "../../Footer";
 import Nav from "../../Nav";
 import HomeContent from "./HomeContent";
@@ -16,6 +17,14 @@ const Home = () => {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState({});
     const url = config.url.BASE_URL;
+
+    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+    const toggleTheme = () => {
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme)
+    }
 
     function getPosts() {
         const token = JSON.parse(localStorage.getItem('token'));
@@ -50,8 +59,8 @@ const Home = () => {
     }
 
     return (
-        <div className='app'>
-            <Nav user={user}/>
+        <div className='app' data-theme={theme}>
+            <Nav user={user} toggleTheme={toggleTheme}/>
             <HomeContent posts={posts} user={user} getPosts={getPosts}/>
             <Footer />
         </div>
