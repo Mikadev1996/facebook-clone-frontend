@@ -1,7 +1,9 @@
 import React from "react";
 import Footer from "../Footer";
+import {config} from "../../Constants";
 
 const SignUp = () => {
+    const url = config.url.BASE_URL;
     return (
         <div className='app'>
             <div className="signin-content account-content">
@@ -11,7 +13,7 @@ const SignUp = () => {
                         <h2>Create a new account</h2>
                         <p>It's quick and easy</p>
                     </div>
-                    <form className='account-form'  action='http://localhost:5000/api/user/sign-up' method='POST'>
+                    <form className='account-form'  action={`${url}/user/sign-up`}method='POST'>
                         <div className="form-control name-info">
                             <input type="text" placeholder="First name" id="firstname" name='firstname'/>
                             <input type="text" placeholder="Surname" id="surname" name='surname'/>

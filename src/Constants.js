@@ -1,6 +1,6 @@
 const production = {
     url: {
-        BASE_URL: 'https://facebook-clone-express.azurewebsites.net'
+        BASE_URL: 'https://facebook-clone-express.azurewebsites.net/api'
     }
 }
 
@@ -12,4 +12,4 @@ const development = {
 
 const mode = 'production'
 
-export const config = mode === 'development' ? development : production;
+export const config = production;

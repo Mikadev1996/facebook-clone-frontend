@@ -1,11 +1,13 @@
 import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../Footer";
+import { config } from '../../Constants';
 
 const LogIn = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [formError, setFormError] = useState(false);
+    const url = config.url.BASE_URL;
 
     const nav = useNavigate();
 
@@ -15,7 +17,7 @@ const LogIn = () => {
             username: username,
             password: password
         });
-        fetch('http://localhost:5000/api/users/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        fetch(`${url}/users/log-in`, {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
             .then(r => r.json())
             .then(data => {
                 if (data.token !== undefined) {
@@ -35,7 +37,7 @@ const LogIn = () => {
             username: "testing",
             password: "123"
         });
-        fetch('http://localhost:5000/api/users/log-in', {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
+        fetch(`${url}/users/log-in`, {method: 'POST', body: formData, headers:{'Content-Type': 'application/json'}})
             .then(r => r.json())
             .then(data => {
                 if (data.token !== undefined) {
