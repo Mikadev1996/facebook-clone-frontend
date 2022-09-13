@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/facebook-clone-frontend/static/css/main.7fc672ed.css",
-    "main.js": "/facebook-clone-frontend/static/js/main.f5b54a0e.js",
-    "static/media/friends_icon.png": "/facebook-clone-frontend/static/media/friends_icon.159d8b4abc23167fd8aa.png",
-    "static/media/logout_icon.svg": "/facebook-clone-frontend/static/media/logout_icon.08ed9332bdd612eb6918ab19dea89608.svg",
-    "static/media/facebook-like.svg": "/facebook-clone-frontend/static/media/facebook-like.1f38219a30bae586157327603a90854d.svg",
-    "static/media/cog.svg": "/facebook-clone-frontend/static/media/cog.8c5b9138d8c4be979ec844f26605245f.svg",
-    "index.html": "/facebook-clone-frontend/index.html",
-    "static/media/chevron.svg": "/facebook-clone-frontend/static/media/chevron.52254b8ec9e2b910c175508f0dfe4601.svg",
-    "static/media/arrow.svg": "/facebook-clone-frontend/static/media/arrow.2e552680862d14cd24637c6387dfb5b7.svg",
-    "main.7fc672ed.css.map": "/facebook-clone-frontend/static/css/main.7fc672ed.css.map",
-    "main.f5b54a0e.js.map": "/facebook-clone-frontend/static/js/main.f5b54a0e.js.map"
+    "main.css": "/static/css/main.7fc672ed.css",
+    "main.js": "/static/js/main.dab8d6d5.js",
+    "static/media/friends_icon.png": "/static/media/friends_icon.159d8b4abc23167fd8aa.png",
+    "static/media/logout_icon.svg": "/static/media/logout_icon.08ed9332bdd612eb6918ab19dea89608.svg",
+    "static/media/facebook-like.svg": "/static/media/facebook-like.1f38219a30bae586157327603a90854d.svg",
+    "static/media/cog.svg": "/static/media/cog.8c5b9138d8c4be979ec844f26605245f.svg",
+    "index.html": "/index.html",
+    "static/media/chevron.svg": "/static/media/chevron.52254b8ec9e2b910c175508f0dfe4601.svg",
+    "static/media/arrow.svg": "/static/media/arrow.2e552680862d14cd24637c6387dfb5b7.svg",
+    "main.7fc672ed.css.map": "/static/css/main.7fc672ed.css.map",
+    "main.dab8d6d5.js.map": "/static/js/main.dab8d6d5.js.map"
   },
   "entrypoints": [
     "static/css/main.7fc672ed.css",
-    "static/js/main.f5b54a0e.js"
+    "static/js/main.dab8d6d5.js"
   ]
 }
