@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/facebook-clone-frontend/static/css/main.7fc672ed.css",
-    "main.js": "/facebook-clone-frontend/static/js/main.232f207b.js",
+    "main.js": "/facebook-clone-frontend/static/js/main.9319e708.js",
     "static/media/friends_icon.png": "/facebook-clone-frontend/static/media/friends_icon.159d8b4abc23167fd8aa.png",
     "static/media/logout_icon.svg": "/facebook-clone-frontend/static/media/logout_icon.08ed9332bdd612eb6918ab19dea89608.svg",
     "static/media/facebook-like.svg": "/facebook-clone-frontend/static/media/facebook-like.1f38219a30bae586157327603a90854d.svg",
@@ -10,10 +10,10 @@
     "static/media/chevron.svg": "/facebook-clone-frontend/static/media/chevron.52254b8ec9e2b910c175508f0dfe4601.svg",
     "static/media/arrow.svg": "/facebook-clone-frontend/static/media/arrow.2e552680862d14cd24637c6387dfb5b7.svg",
     "main.7fc672ed.css.map": "/facebook-clone-frontend/static/css/main.7fc672ed.css.map",
-    "main.232f207b.js.map": "/facebook-clone-frontend/static/js/main.232f207b.js.map"
+    "main.9319e708.js.map": "/facebook-clone-frontend/static/js/main.9319e708.js.map"
   },
   "entrypoints": [
     "static/css/main.7fc672ed.css",
-    "static/js/main.232f207b.js"
+    "static/js/main.9319e708.js"
   ]
 }
