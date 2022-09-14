@@ -40,3 +40,18 @@
   padding: 10px;
 }
 
+#facebook-login {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  p {
+    margin: 0;
+    width: calc(100% - 20px);
+  }
+
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}
+

@@ -4,6 +4,7 @@ import SignUp from "./components/pages/SignUp";
 import Home from "./components/pages/Home/Home";
 import Profile from "./components/pages/Profile/Profile";
 import Friends from "./components/pages/Friends";
+import Auth from "./components/pages/Auth";
 
 const RouteSwitch = () => {
     return (
@@ -14,6 +15,7 @@ const RouteSwitch = () => {
                 <Route path='/home' element={<Home />} />
                 <Route path='/friends' element={<Friends />} />
                 <Route path='/profile/:id' element={<Profile />}/>
+                <Route path='/auth/:token/:user_id' element={<Auth />} />
             </Routes>
         </BrowserRouter>
     )

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../Footer";
 import { config } from '../../Constants';
+import logo from '../../styles/images/fb-logo-white.png';
 
 const LogIn = () => {
     const [username, setUsername] = useState("");
@@ -52,6 +53,12 @@ const LogIn = () => {
             });
     }
 
+    const facebookLogIn = (e) => {
+        e.preventDefault();
+        console.log("fb logged");
+        window.location.replace(`${url}/users/facebook`);
+    }
+
     return (
         <div className='app'>
             <div className="account-content">
@@ -76,7 +83,10 @@ const LogIn = () => {
                             <button onClick={e => handleLogIn(e)} className='form-submit' type="submit">Log In</button>
                         </div>
                         <div>
-                            <button id='facebook-login' className='form-submit' type="submit">Log In with real Facebook</button>
+                            <button onClick={e => facebookLogIn(e)} id='facebook-login' className='form-submit' type="submit">
+                                <img src={logo} alt="facebook"/>
+                                <p>Log In with Facebook</p>
+                            </button>
                         </div>
                         <div>
                             <button onClick={e => handleTestLogIn(e)} id='test-account-login' className='form-submit' type="submit">Test Account</button>

@@ -10,6 +10,4 @@ const development = {
     }
 }
 
-const mode = 'production'
-
-export const config = production;
+export const config = development;
