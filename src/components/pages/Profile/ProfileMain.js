@@ -7,6 +7,20 @@ const ProfileMain = ({user, posts, bio, dob, profile}) => {
     const [likedPosts, setLikedPosts] = useState([]);
     const url = config.url.BASE_URL;
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        })
+    })
+
+    useEffect(() => {
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((item) => observer.observe(item));
+    }, [posts])
+
+
     useEffect(() => {
         usersLikedPosts();
     }, [])
@@ -48,7 +62,7 @@ const ProfileMain = ({user, posts, bio, dob, profile}) => {
                             <h1>Posts</h1>
                         </div>
                     </div>
-                    <div className='post-container'>
+                    <div className='posts-container'>
                         {posts.length > 0 && posts.map((data) => {
                             return (
                                 <Post data={data} key={data._id} likedPosts={likedPosts}/>
