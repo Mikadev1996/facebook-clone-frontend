@@ -34,7 +34,7 @@ const Post = ({data}) => {
     }
 
     return (
-        <div className='post-container'>
+        <div className='post-container hidden'>
             <div className='post-1'>
                 <div className='post-header'>
                     <span className='icon-button'>🐶</span>

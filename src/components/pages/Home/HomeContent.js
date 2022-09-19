@@ -7,6 +7,19 @@ import HomeCreatePost from "./HomeCreatePost";
 const HomeContent = ({posts, user, getPosts}) => {
     const [openCreatePost, setOpenCreatePost] = useState(false);
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        })
+    })
+
+    useEffect(() => {
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((item) => observer.observe(item));
+    }, [posts])
+
     return (
         <main className='content'>
             {openCreatePost && <HomeCreatePost setOpenCreatePost={setOpenCreatePost} getPosts={getPosts} user={user}/>}
