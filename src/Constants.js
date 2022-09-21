@@ -10,4 +10,4 @@ const development = {
     }
 }
 
-export const config = development;
+export const config = production;
